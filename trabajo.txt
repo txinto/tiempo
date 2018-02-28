@@ -1,0 +1,2021 @@
+1) Especiñcación actualizada ................. , ............. 3
+2) Descripción del sistema ............................. 4
+3) ¡Manual de usuario ......................................... 15
+4) Juegos de prueba .......................................... 21
+5) Código fuente ................................................ 22
+
+1) ESPECIFICACIQN ACTUALIZADA
+
+Para implementar la práctica hemos utilizado Prolog, ya que nos permite utilizar lógica clausal y gramáticas de cláusulas deñnidas, que nos facilitan el análisis del lenguaje natural.
+
+Respecto al nivel implementado hemos hecho el nivel alto, permitiendo realizar las consultas en lenguaje natural.
+
+2) DESCRIPCION DEL SISTEMA
+
+Nuestro sistema permite extraer la información de textos escritos en lenguaje natural sobre predicciones meteórologicas y almacenarla en foma de
+predicados que posteriormente podremos consultar. Estas consultas también las podremos realizar mediante preguntas en lenguaje natural.
+
+Para representar el conocimiento nos hemos basado en un sistema formado por tres componentes:
+
+  - Un lexicón que almacenará la infomación léxica y semántica de las palabras que admitimos en nuestro sistema. Esta información será la que nos permitirá satisfacer las restricciones de concordancia de género y número, utilizar las preposiciones correctas en cada parte de la frase o mantener información sobre sinónimos.
+
+  A continuación mostramos algunos ejemplos de las entradas de nuestro lexicón
+
+  De los dias de la semana solo nos interesa el nombre.
+
+  fech('Lunes','Lunes').
+  fech('Martes','Martes').
+  fech('Miercoles','Miercoles').
+  fech('Jueves','Jueves').
+
+  Para los lugares guardamos el significado semántico (nombre), el género y el número.
+
+  lug('Canarias','Canarias',fem,pl).
+  lug('Asturias','Asturias',gind,sng).
+  lug('Murcia','Murcia',gind,sng).
+  lug('Malaga','Malaga',gind,sng).
+  lug('Barcelona'.'Barcelona',gind,sng).
+  lug('Pirineos','Pirineos',msc,pl).
+  Iug('Estrecho','Estrecho',msc,sng).
+  lug('Peninsula'.'Peninsula',fem,sng).
+
+  Para las zonas y los orígenes de los vientos guardamos su significado semántico,el género y el número.
+
+  zon(litoral,litoral,msc,sng).
+  zon(norte, norte,msc,sng).
+  zon(sur,sur,msc,sng).
+  zon(este,este,msc,sng).
+
+  orig(norte,norte,msc,sng).
+  orig(sur,sur,msc,sng).
+  orig(este,este,msc,sng).
+
+  De los cuantificadores necesitamos el significado, el género y el número.
+
+  cuant(ocasional,ocasional,msc,sng).
+  cuant(ocasional,ocasional,fem,sng). _.
+  cuant( moderada, moderada,fem, sng).
+  cuant(moderado,moderado,msc,sng).
+  cuant(ocasionales,ocasional,msc,pl).
+  cuant(ocasionales, ocasional,fem, pl).
+  cuant(moderadas,moderada,fem,pl).
+  cuant(moderados,moderado,msc,pl).
+
+  Para los fenómenos guardamos significado, género y número. Tenemos en cuenta los sinónimos, de forma que nombres de fenómeno distintos (p.ej. precipitaciones y lluvia) tienen el mismo significado (lluvia).
+
+  fenom('Viento',viento,msc,sng).
+  fenom('viento',viento,msc,sng).
+  fenom('Nubes',nubes,fem,pl).
+  fenom(nubes,nubes,fem,pl).
+  fenom('Claros',claros,msc,pl).
+  fenom(claros,claros,msc,pl).
+  fenom('Lluvia',lluvia,fem,sng).
+  fenom('Lluvias',lluvia,fem,pl).
+  fenom('Llovizna',lluvia,fem,sng).
+  fenom('Lloviznas',lluvia,fem,pl).
+  fenom(lluvia,lluvia,fem,sng).
+  fenom(lluvias,lluvia,fem,pl).
+  fenom(chubascos, lluvia,fem,pl).
+  fenom(precipitaciones,Iluvia,fem,pl).
+  fenom(soleado,sol,msc,sng).
+  fenom(sol,sol,msc,sng).
+
+  Para los adjetivos, ademas de Significado y género y número también hemos guardado el tipo:
+    - calificativo : notable, moderado,
+    - lugar : Aquellos que hacen referencia a zonas concretas de un lugar (occidental, oriental, …) ,
+    - lugarb : Adjetivización de un sustantivo de lugar (catalan, peninsular, …)
+
+  adj(catalan,'Catalunya' , msc,sng, lugarb).
+  adj(andaluz,'Andalucia',msc, sng, lugarb).
+  adj(peninsular,'Peninsula',msc,sng,lugarb).
+
+  adj(occidental,occidental,gind,sng,lugar).
+  adj(oriental,oriental,gind,sng,lugar).
+  adj(septentrional,septentrional,gind,sng, lugar)…
+  adj(meridional,meridional,gind,sng,lugar).
+
+  adj(ligera,ligera,fem,sng,calif).
+  adj(ligeras,ligera,fem,pl,calif).
+  adj(ligeros, ligero,msc,pl,calif).
+  adj(ligero, ligero,msc,sng,calif).
+  adj(moderada,moderada,fem,sng,calif).
+  adj(moderadas,moderada,fem,pl,calif).
+  adj(moderado,moderado,msc,sng,calif).
+  adj(moderados,moderado,msc,pl,calif).
+
+  De las preposiciones guardamos el tipo:
+
+  prep(en,plug).
+  prep(a,a).
+  prep(sin,sin).
+  prep(con,oon).
+  prep(de,de).
+
+  Para los artículos simplemente necesitamos género y número:
+
+  articul(el,msc,sng).
+  articul(la,fem, sng).
+  articul(los,msc, pl).
+  articul(las,fem, pl).
+
+  De los verbos necesitamos el tipo, el significado (infinitivo) y el tipo de fenomeno al que está asociado:
+
+  verb(hizo,vnorm,hacer,indef).
+  verb(estaba,vnorm,estar,indef).
+  verb(hubo,vnorm,haber,indef).
+  verb(llovio,vfen, llover, lluvia).
+  verb(nevo,vfen,nevar,nieve).
+  verb(granizo,vfen,granizar,granizo).
+
+  - Una gramática de cláusulas definidas mediante la cual especificamos la estructura de las frases admitidas.
+
+  Gramática para analizar las prequntas:
+
+  %% Preguntas tipo "Que temperatura hizo en Barcelona el lunes 1/1/1?
+
+  pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+  interabrir,que,expr_temp,verbo(vnorm,hacer,_),expr_lugar(L,2),
+  articulo(msc,sng),fecha(D),fechames(FOH),intercerrar, punto.
+
+  pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) -->
+  “ interabrir,que,expr_temp,verbo(vnorm,hacer,_),articulo(msc,sng),fecha(
+  D) ,fechames(FOH),expr_lugar(L,2), intercerrar,punto.
+
+  pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+  interabrír,que,expr_temp,verbo(vnorm,haber,_),expr_lugar(L,2),
+  articulo(msc,sng),fecha(D),fechames(FOH),intercerrar,punto.
+
+  pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+  interabrir,que,expr_temp,verbo(vnorm,haber,_),articulo(msc,sng),
+  fecha(D),fechames(FCH),expr_lugar(L,2),intercerrar,punto.
+
+  pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —->
+  interabrir,que,expr_temp,verbo(vnorm,hacer,_),expr_lugar(L,2).
+  articulo(msc,sng),fechames(FCH), intercerrar,punto.
+
+  pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+  interabrir,que,expr_temp,verbo(vnorm,hacer,_),expr_lugar(L,2).
+  articulo(FCH),expr_lugar(L,Z), intercerrar,punto.
+
+  pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —->
+  interabrir,que,expr_temp,verbo(vnorm,haber,_),expr_lugar(L,2).
+  articulo(msc,sng),fechames(FCH), intercerrar,punto.
+
+  pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) -—>
+  interabrir,que,expr_temp,verbo(ynorm,haber,_),articulo(msc,sng),
+  fechames(FOH),expr_lugar(L,2),intercerrar,punto.
+
+  %% Preguntas tipo "Que tiempo hizo en Barcelona el lunes 1/1/1 ?
+
+  pregunta(fen,F,C,L,Z,D,FCH,POS) —->
+  interabrir,que,todofenom,verbo(vnorm,hacer,_),expr_lugar(L,Z),
+  articulo(msc,sng),fecha(D),fechames(FCH),intercerrar,punto.
+
+  pregunta(fen,F,0,L,2,D,FCH,POS) —->
+  interabrir,que,todofenom,verbo(vnorm,hacer,_),articulo(msc,sng),fecha(D) ,
+  fechames(FCH),expr_lugar(L,Z),intercerrar, punto.
+
+  pregunta(fen,F,0,L,2,0,FCH,POS) -->   interabrir, que,todofenom,
+  verbo(vnorm,haber,_),expr_lugar(L,Z),articulo(msc,sng),fecha(D),
+  fechames(FCH), intercerrar, punto.
+
+  pregunta(fen,F,C,L,2,D,FCH,POS) -->
+  interabrir,que,todofenom,verbo(vnonn,haber,_),articulo(msc,sng),
+  fecha( D),fechames(F CH),expr_lugar(L,2),intercerrar, punto.
+
+  pregunta(fen,F,0,L,Z,D,FCH,POS) -->
+  interabrir,que,todofenom,verbo(vnonn,hacer,_),expr_lugar(L,2),
+  articulo(msc,sng),fechames(FCH),intercerrar,punto.
+
+  pregunta(fen,F,C,L,Z,D,FCH,POS)—>
+  interabrir,que,todofenom,verbo(vnorm,hacer,_),articulo(msc,sng),
+  fechames(FOH),expr_lugar(L,2),intercerrar,punto.
+
+  pregunta(fen,F,0,L,2,D,FCH,POS) —>
+  interabrir,que,todofenom,verbo(vnorm,haber,_),expr_lugar(L,2),
+  articulo(msc,sng),fechames(FCH),intercerrar,punto.
+
+  pregunta(fen,F,C,L,2,D,FCH,POS) —>
+  interabrir,que,todofenom,verbo(vnorm,haber,_),adiculo(msc,sng),
+  fechames( FCH),expr_lugar(L,2),intercerrar, punto.
+
+  %% Preguntas tipo “Como estaba el cielo el lunes 1/1/1 en Barcelona ?
+  pregunta(fen, cielo C L ZD, FCH ,POS) -->
+  Iñtél'ábfil', como ,verbo(vnorm, estar ,,_) expr_ obj_fenom(08J, N)
+  expr_lugar( L ,Z), artículo(msc, sng), fechames( FCH) intercerrar ,punto.
+
+  pregunta(fen, cielobfl.,2, D, FCH, POS) —>
+  interabrir ,cm8%rbo(vnom, estar ,,_) expr _obLfenom(08J N),
+  articulo(msc,s )Jhphames(FOH), expr_ Iugar(L, Z), intercerrar p,unto
+
+  pregunta(fen,cielo,0,L,Z,D,FCH,POS) ;-…_> .
+  interabrir,como,verbo(vnorm,estar,_),expr_obj_fenom(08J,N),
+  expr_lugar(L,2), articulo(msc, sng),fecha(D),fechames( FCH), intercerrar,
+  punto.
+
+  pregunta(fen,cielo,C,L,Z,D,FCH,POS) -—>
+  interabrir,como,verbo(vnorm,estar,_),expr_obj_fenom(08J, N),
+  articulo(msc,sng),fecha(D),fechames(FOH),expr_lugar(L,2), intercerrar,
+  punto.
+
+  %% Preguntas tipo "Como Ilov¡o el ¡unes 11111 en Barcelona ?
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) -->
+  interabrir,como,verbo(vfen,_,F),expr_lugar(L,2),articulo(msc,sng),
+  fecha( D),fechames(FOH), intercerrar, punto.
+
+  pregunta(cuant,F,C,L,2,D,FCH,POS) —>
+  ¡nterabrir,como,verbo(vfen,_,F),articulo(msc,sng),fecha(D),
+  fechames(FCH),expr_lugar(L,2),intercerrar,punto.
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+  interabrir, como,verbo(vfen,_, F ),expr_lugar(L,Z),articulo(msc, sng),
+  fechames(FOH),intercerrar,punto.
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+  interabrir,como,verbo(vfen,_,F),articulo(msc,sng),fechames(FCH),
+  expr_lugar(L,2),intercerrar, punto.
+
+  %% Preguntas tipo "Como era la lluvia del lunes 1/1 /1 en Barcelona ?
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+  interabrir,como,verbo(vnorm,ser,_),articulo(G,N),fenomeno(F,G,N),
+  expr_lugar(L,2),articulo(msc,sng),fecha(D),fechames(FOH),intercerrar,
+  punto.
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+  interabrir,como,verbo(vnonn,ser,_),articulo(G,N),fenomeno(F,G, N).
+  articulo(msc,sng).fecha(D),fechames(FCH),expr_lugar(L,2), intercerrar,
+  punto.
+
+  pregun?a('cuam,r,c,L,zo,FCH,POS) —>
+  interabrir,oomo,verbo(vnorm,ser,_),articulo(G, N),fenomeno(F,G, N),
+  expr_lugar(L.2),articulo(msc,sng),fed13mes( FCH), intercerrar,punto.
+  & vc
+  pregunta(cuant,F, ,¡ ,FCH,POS) —>
+  interabrir, vgmo(vnonn, ser,_),artiwlo(6,N),fenomeno(F, G, N),
+  articulo(msc,sng),£echames(FCH),expr_lugar(L,2), intercerrar, punto.
+
+  %% Preguntas tipo "Que lluvia hubo el_ lunes 11111 en Barcelona ?
+
+  pregunta(cuant,F,0,L,Z,D,FCH,POS) --5
+  interabrir,que,fenomeno(F,_,_),verbo(vnorm,hacer,_),expr_lugar(L,2),
+  artículo(msc,sng),fecha(D),fechames(FCH),intercerrar,punto.
+
+  pregunta(cuant,F,0,L,Z,D,FCH,POS) ——>
+  interabrir,que,fenomeno(F,_,_),verbo(vnorm,hacer,_),articulo(msc,sng),
+  fecha(D),fechames(FCH),expr_lugac(L,2), intercerrar,punto.
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) ——>
+  interabrir,que,fenomeno(F,_,_),verbo(vnorm,hacer,_),expr_lugar(L,2),
+  articulo(msc, sng),fechames(FOH), interoerrar, punto.
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+  interabrir,que,fenomeno(F,_,_),verbo(vnom1,hacer,_),articulo(msc,sng),
+  fechames(FCH),expr_lugar(L,2),intercerrar,punto.
+  pregunta(cuant,F,0,L,Z,D,FCH,POS) —>
+  interabrir, que,fenomeno(F,_,_),verbo(vnorm, haber,_),expr_lugar( L, 2),
+  articulo( msc, sng),fecha( D),fechames( FCH), intercerrar, punto.
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+  interabrir,que,fenomeno(F,_,_),verbo(vnorm,haber,_),articulo(msc,sng),
+  fecha(D),fechames(FCH),expr_lugar(L,2),intercerrar, punto.
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) -->
+  interabrir,que,fenomeno(F,_,_),verbo(vnorm,haber,_),expr_lugar(L,2),
+  articulo(msc,sng),fechames(FCH), intercerrar,punto.
+
+  pregunta(cuant,F,0,L,Z,D,FCH,POS) —>
+  interabn'r, que,fenomeno(F,_,_),verbo(vnom1, haber,_),articulo(msc, sng),
+  fechames(F CH),expr_lugar(L,2),intercerrar, punto.
+
+  %% Preguntas tipo "Cuando Ilovio en Barcelona?
+  pregunta(cuan,VF,0,L,Z,D…FCH,POS) —>
+  interabn'r.cuando.verbo(vfen,_,VF),expr_lugar(L,2),intercerrar,punto.
+
+  %% I?rggun_tas tipo "Donde nevo el lunes 1I1/1 ?
+
+  pregunta(don,VF,0,L,LD,FCH,POS) —->
+  interabrir,donde,verbo(vfen,_,VF),articulo(msc,sng),fecha(0)
+  fechames(ñ£ti),intercerrar, punto.
+
+  pregunta(don,VF,d&b,FCH,POS) —>
+  interabrir,donde,g¿úqo(vfen,_,VF),artiwlo(msc,sng),fed1ames(FOH),
+  intercerrar,pmta -9
+
+  expr_obj_fenom(08%&; artículo(msc,N),expr_obj__fen(08J,N).
+  . ¡ 3 ._y
+
+  Gramática para analizar las predicciones
+  predic(X) --> I_pred_diaria(X).
+
+  I_pred_diaria([XlY]) ——> pred_diaria(X),I_pred_diaria(Y).
+  I_pred_diaria(X) --> [].
+
+  pred_diaria( D) --> expr_fecha(D, FC),dospuntos, I_frases( D, FC).
+  expr_fecha(D,FC) —> dia,fechames(F0),fecha(D).
+
+  l_frases(D,F0) --> frase(D, FC), I_frases(D,F0).
+  i_frases(D,F0) ——> [].
+
+  frase(D,FC)—>expr_fenomeno(F,O,C,G,N,POS),
+  I_cuantif_lugar(D,FC,F,O,G,N,POS),['.'].
+
+  frase(D,FC) —> expr_fenomeno(F,0,0,6,N,POS),
+  I_expr_lugar(D,FC,F,O,C,POS),['.'].
+
+  frase(D,FC) —> expr_temp,I_cuantif_lugart(D,FC),['…'].
+
+  %% Lista de cuantiñcadores y lugares
+
+  I_cuantif_lugar(0,FC,F,O,G,N,POS) —> expr_cuantif(01,6,N),
+  I_expr_lugar(D,F0,F,0,C1,POS),
+  conjun,expr_cuantif(C2,G,N),I_expr_lugar(D,FC,F,O,CZ,POS).
+
+  |_cuantif_lugar(0,F0,F,O,G,N,POS) --> expr_cuantif(0,6,N),
+  I_expr_lugar(0,F0,F,0,0,POS).
+  I_cuantif_lugar(0,FC,F,O,G,N,POS) -—> expr_cuantif(0,6,N),
+  I_expr_lugar(D,FC,F,O,C,POS),
+  [','],I_wantif_lugar(0,F0,F,O,G,N,POS).
+
+  %% lista de cuantiñcadores y lugares para frases referentes a temperaturas
+
+  I_cuantif_lugart(0f0) —> expr_cuantift(€).
+
+  l_cuantif_lugar1( D,FC) —> expr_wantift(0),
+  i_expr_lugar(D,FC,temperatura,O,C,cierta).
+
+  i_cqaptif_lugart(0.i—'C) —> expr_cuantift(0),
+  |_expr_lugar(D,FC,temperatura,O,C,cierta)…
+
+  iva“. [', '],_I cuantif |__ugart(D,F0).
+  ¡ _cuantif_,lugad(0 FC) —> expr _cuantift(01),
+  ¡ u — º . | _e__xpr lugar(D, FC ,_temperatura O, 01 cierta),
+
+  conjun, expr_cuantift(02)
+  "* …)A I_expr_lugar(D,FC,temperah1ra,0,02,cierta).
+
+  %% Lista de lugares
+
+  I_expr_lugar(D,FC,F,O,C,POS) —->
+
+  expr_lugar(L1 ,Z1),conjun,expr_lugar(L2,22).
+
+  l_expr_lugar(D,FC,F,O,C,POS) —> expr_lugar(L,2),[','],
+  l_expr_lugar(D,FC,F,O,C,POS).
+
+  l_expr_lugar(D,FC,F,O,C,POS) —> expr_lugar(L,2).
+
+  I_expr_lugar(D,FC,F,O,C,POS) -—> [].
+
+  %% Expresion de lugar
+
+  expr_lugar(L,2) --> prepos(plug), Iugar(L,_,_),adjet(2,_,_, lugar).
+
+  expr_lugar(L,todo) --> prepos(plug),lugar(L,_,_).
+
+  . expr_lugar(L,2) -—> prepos(plug),articulo(G,N),zona(2,G,N),
+
+  adjet(L,G,N,lugarb).
+
+  expr_lugar(L,2) --> prepos(plug),adiculo(G,N),lugar(L,G, N),adjet(2,_,_, lugar).
+
+  expr_lugar(L,todo) —-> prepos(plug),articulo(G,N),lugar(L,G,N).
+
+  expr_lugar(L,2) -—> prepos(plug),artlculo(6,N),
+  zona(2,G,N),prepos(de),lugar(L,_,_).
+
+  expr_lugar(L,2) —> prepos(plug),articulo(G,N),
+  zona(2,G,N),prepos(de),Iugar(L,_,_).
+
+  expr_lugar(L,2) —> prepos(plug),articulo(61,N1),zona(2,G1,N1),
+  prepos(de),articulo(62,N2),lugar(L,_,_).
+
+  %% Expresión de cuantiñcador
+  , expr_cuantif(0,G,N) --> cuantif(C1,G,N),prepos(a),cuantif(02,G,N).
+  expr_cuantif(0,G,N) --> cuantif(C,G,N).
+
+  %% Expresion de cuantificador para temperaturas
+
+  expr_cuantift(0) —> prepos(sin),sustant(01).
+
+  expr_cuantift(0) —> prepos(plug),adjet(A,G,N,calif),cambio(01 ).
+
+  expr_cuant'rft(0) —> prepos(plug),adjet(A1,G,N,cal'rf),
+  prepos(a),adjet(A2,6,N,cal'rf),cambio(C1).
+
+  %% Expresiones de fenómeno
+
+  %% Fenomenos tipo brumas y nieblas, nubes y claros
+
+  expr_fenomeno(F.nulo.normal,61,N1,cierta) —> fenomeno(F1,G1,N1),conjun,
+  fenomeno(F2,G2,N2)
+
+  expr_fenomeno(F.mlo.normal,6,N,cierta) —> fenomeno(F,G,N).
+
+  expr_fenomeno(F,mlo,mnnal,G,N,probable) —> probab,prepos(de),
+
+  _ . fenomeno(F1,G1,,N1)conj,fenomeno(F2,G2,N2).
+
+  expr_ fenomeno(F, …, normal, G, N probable) —> probab prepos(de),
+  fenomeno(F, G, N)
+
+  expr_fenomeno(F, o, C ¡G, N ,cierta) —-> adjet(C, G, N w,lif), fenomeno(F, G, N).
+
+  expr_fenomeno(vienté,0, C, G, N ,cierta) —> fenomeno(viento,G,N),prepos(de),
+  artículo(G, N), on'gen(01, G, N).
+  expr_ temp --_> temperél”
+
+  =…» .¿ ,. ll.nn —————
+
+  dia -—> [W],ídi(W)).
+
+  fecha(D) --> [W],(fech(W,D)).
+
+  fechames(F ) -—> [|1],[integer(l1 ),int_text(l1 ,W1)),[W2],[barra(W2)),
+  [I3],[integer(l3),int_text(l3,W3)),[I4],[barra(W4)),
+  [I5],[integer(l5),int_text(l5,W5)].
+
+  lugar(L,G,N) ——> [VV],£IUQ(W,L,G,N)].
+
+  cuantif(C,G,N) --> [W],[cuant(W,0,G,N)).
+
+  fenomeno(F,G,N) --> [W],[fenom(W,F,G,N».
+
+  todofenom —-> [W],(todofen(W)).
+
+  temperat ——> [W],ítemp(W)).
+
+  Cºnjun --> [W].í00ni(w)i-
+
+  adjet(A,G,N,T) —-> [W],[adj(W,A,G,N,T)].
+
+  probab --> [W],(prpb(W)].
+
+  sustant(8) —-> [W],[sust(W,8)).
+
+  cambio(C) --> [W],£camb(W,C)).
+
+  punto—->[W],(punt(W)).
+
+  dospuntos-—>[W],fdospunt(W)).
+
+  prepºS(T)—>[W],íprep(W,T)i.
+
+  articulo(G,N)—>[W],far1icul(W,G,N)).
+
+  zona(2,G,N)—>[W],izon(W,2,G,N)).
+
+  origen(0,G,N) —> [W],(orig(W,0,G,N)).
+
+  interabrir —> [W],(interrab(W)).
+
+  intercerrar —> [W],[interrce(W)1.
+
+  que —> [WMQU(W)1-
+
+  cuando —> [W],(cuand(W)).
+
+  donde —> [W],(dond(W)).
+
+  como ——> [W],£com(W)).
+  verb(hizo,vnorm,hacer,indef).
+
+  verbo(T,l,F) ——> [W],(verb(W,T,l,F)).
+  parentesisabrir —> [W],(parentes_ab(W)].
+  parentesiscerrar —> [W],(parentes_oe(W)).
+
+  expr_obj_fen(08J, N) —> [M,(ex_obj_f(W,08J,N)]
+
+  - Un analizador que trabajará sobre la gramática para abstraer la
+  estructura sintáctim que subyace a la frase.
+
+  Para cada predicoón guardaremos los datos siguientes
+  - Diamla semana en que se produjo el fenomeno.
+  - Fe…“!el formato dia/mes/año.
+  - Fe enb al que hace referencia la predicción.
+  - En ¡:as&de que el fenómeno sea viento también guardaremos
+  su direeaión.
+  - Cuantiñcador sobre el fenómeno. (Débil, moderado, etc. )
+  - Lugar ……jo el fénomeno.
+
+  '- Zona concreta a la que afecto el fenómeno. (norte, litoral. …)
+
+  ºº“I—!'OU'14.UGU
+
+  - Grado de certeza de la predicción.
+
+  Esta información la guardamos en forma de un predicado con el formato
+  siguiente:
+
+  tiempo(dia, fecha, fenomeno, origen, cuantificador, lugar, zona, certeza).
+  Un ejemplo de predicción es:
+
+  Dia 5/6/96 (Miercoles) : Posibilidad de chubascos fuertes en el norte de
+  Aragon. Viento del suroeste en el litoral andaluz.
+
+  y los predicados resultantes serian:
+
+  - tiempo(miercoles, 5/6/96, lluvia, fuerte, _, Aragon, norte, probable).
+  - tiempo(miercoles, 5/6/96, viento, _, suroeste, Andalucia, litoral,
+  cierto).
+
+  Para cada pregunta abstraemos los datos que el usuario aporta y asociamos
+  un tipo de pregunta que luego utilizaremos para mostrar la informacion
+  necesaria. No guardamos en forma de asertos ninguna información sobre la
+  pregunta.
+
+  Los datos que el usuario aporta se tratan igual que en la gramatica de
+  predicciones, ya que es la misma que trata cada uno de los componentes
+  gramaticales de las preguntas.
+
+  Asi, cada pregunta constituye una especie de formulario con unos campos
+  rellenos (los datos que aporta el usuario), otros vacios, y un tipo de pregunta.
+
+  El tipo discriminará la clase de respuesta que daremos y los datos serán
+  utilizados para realizar búsquedas sobre los asertos tiempo() antes
+  mencionados.
+
+  3) MANUAL DEL USUARIO
+  Introducción
+
+  Esta aplicación permite la interpretación de predicciones meteorológicas
+  en lenguaje natural y la posterior consulta de éstas.
+
+  Puesta en marcha
+
+  Este programa necesita tener instalado el interprete de prolog "API".
+  Una vez dentro del entorno cargaremos el fichero 'TIEMPO.ARI' y tras
+  reconsultar el buffer iniciaremos el programa con la instrucción:
+  ?— main. " ,
+
+  Seguidamente nos aparece una pantalla de presentación y el menu.
+  Las opciones del menu son:
+
+  0. Leer juego de pruebas —> Con esta opcion leemos las predicciones
+  proporcionadas en nuestro juego de pruebas.
+
+  1. Insertar textos —> Esta opcion nos permite insertar nuevas predicciones a
+  traves del teclado.
+
+  2. Realizar preguntas --> Mediante esta opcion, podemos realizar consultas en
+  lenguaje natural sobre las predicciones introducidas previamente.
+
+  3. Salir ——> Detiene la ejecución del programa.
+
+  Insertar Predicciones.
+  Este programa permite insertar dos tipo de predicciones:
+
+  - Las predicciones introducidas por el usuario a traves del teclado
+  usando la opción 1 del menu principal.
+  - Las predicciones de ejemplo que adjuntamos con este programa
+  usando la opcion 2 del menu principal.
+
+  Las predicciones deberan estar escritas en lenguaje natural siguiendo el
+
+  siguiente formato: :“)…
+
+  '(” '.
+  Dia dd/mmlaa (diagde_áa_semana) : lista de frases.
+  rr '
+
+  ¡A :
+
+  Cada frase debe hacer referencia a un solo fenómeno (o a fenomenos
+  compuestos como “nubes y claros” o “burmas' y nieblas”), que aparecerá al
+  principio de la misma. A continuación del fenómeno hay la lista de
+  cuantificadores y lugares en los que se dará este. Los cuantiticadores son
+  adjetivos como ocasional, fuerte, Hay que mencionar que no permitimos
+  más de un cuantificador para cada lugar o lista de lugares (por ejemplo “fuerte
+  ocasional”). Finalmente, en la lista de lugares permitimos modificadores para
+  especificar la zona concreta en que se da el fenómeno (en Andalucia
+  occidental, en el norte de Aragon, en el litoral mediterraneo). Cabe destacar
+  que hay que poner la preposicón 'en” antes de cada lugar, es decir, no
+  admitimos construcciones como “en Catalunya, la Rioja y Aragón', sino “en
+  Catalunya, en la Rioja y en Aragón'.
+
+  Ejemplos de predicciones:
+
+  Dia 3/8/97 (Domingo) : Posibilidad de precipitaciones debiles en
+  Castilla, fuertes en el este de Galicia y ocasionales en Cantabria. Nubes y
+  claros en Aragon. Soleado en Catalunya, en Andalucia y en las Canarias.
+  Temperaturas sin cambios.
+
+  Dia 10/12/97 (Martes) : Chubascos debiles a moderados en Andalucia
+  occidental y fuertes en el norte de la Peninsula. Posibilidad de nieve en los
+  Pirineos. Temperaturas en moderado descenso en el litoral cantabrico, en
+  fuerte descenso en Madrid. Viento del noroeste en el sureste de Catalunya.
+
+  Realizar preguntas.
+
+  Una vez hemos introducido las predicciones, podemos realizar
+  consultas en lenguaje natural al programa sobre estas. El sistema acepta
+  varios tipos de pregunta:
+
+  1. Preguntas sobre cualquier fenomeno en un lugar y una fecha.
+
+  - ¿Que tiempo <hizo.hubo> en <lugar> el <dia fecha,fecha>?
+  - ¿Que tiempo <hizo,hubo> el <dia fecha,fecha> en <lugar>?
+
+  Ejemplos:
+
+  — ¿Que tiempo hizo en el norte de las Canarias el miercoles 26/2/97?
+  — ¿Que tienw¿pj_zo el 1/3/97 en el litoral de Catalunya?
+  w .
+
+  El sistema ;pmdera con una serie de datos para cada fenomeno
+  encontrado en es… ys*en*ese lugar, estos datos incluiran el fenomeno, el
+  cuantificador, si se prédijo posibilidad o certeza del fenómeno, y si es un viento
+  nos dira además el orig;31
+
+  .y ._
+
+  2. Preguntas sobceja…atura en un lugar y una fecha.
+
+  - ¿Que temperatura <hizo, hubo> en <Iugar> el <dia fecha fecha>?
+  - ¿Que temperatura <hizo, hubo> el <dia fecha, fecha> en <Iugar>?
+
+  Ejemplos:
+
+  - ¿Que temperatura hubo en el sur de Galicia el jueves 27/2/97?
+  - ¿Que temperatura hizo el 28/2/97 en el Cantabrico?
+
+  Las respuestas que nos proporcionará el sistema nos indicaran la
+  temperatura (caso de haber alguna referencia en el texto), mostrandonos el
+  cuantificador.
+
+  3. Preguntas sobre fenomenos atmosféricos.
+
+  - ¿Como estaba el cielo en <Iugar> el <dia fecha,fecha>?
+  - ¿Como estaba el cielo el <dia fecha,fecha> en <Iugar>?
+
+  Ejemplos:
+
+  — ¿Como estaba el cielo en el sur de Galicia el jueves 27/2/97?
+  - ¿Como estaba el cielo el 28/2/97 en el Cantabrico?
+
+  Este tipo de preguntas genera las mismas respuestas que el primer tipo
+  de preguntas, pero sin mostramos los fenómenos de temperaturas 0 vientos..
+
+  4. Preguntas sobre cuantificadores de fenomeno en un lugar y una
+  fecha.
+
+  Sabiendo un fenómeno que ocurrió en un lugar y una fecha, podemos
+  pedirle al sistema que nos informe de las características de ese fenómeno en
+  concreto.
+
+  - ¿Como <verbofenom> en <Iugar> el <dia fecha,fecha>?
+
+  - ¿Como <verbofenom> el <dia fecha,fecha> en <Iugar>?
+
+  - ¿Como era <articulo> <fenomeno> el <dia fecha,fecha> en <Iugar>?
+  - ¿Como era <artioulo> <fenomeno> en<lugar> el <dia fecha,fecha>?
+  - ¿Que <fenomeno> <hizo,hubo> en <Iugar> el <dia fecha,fecha>?
+
+  - ¿Que <fenomeno> <hizo,hubo> el <dia fecha,fecha> en <Iugar>?
+
+  NOTA: verbofenom es un verbo que denota un fenomeno en concreto. Por
+  ejemplo llovió denota_ lluvia, nevó denota nieve.
+  . ºu":
+  Ejemplos: .—_ ,._..¡
+  "'" $º'»… '.
+
+  - ¿Como llovio!en Galicia el miercoles 26/2/97?
+
+  - ¿Como era el viento en el litoral de Catalunya el 1/3/97?
+
+  - ¿Que lluvia hizo el fl3)97en el norte de las Canarias?
+
+  El sistema respondera con una serie de datos para ese fenomeno
+  encontrado en ese dia y en ese Iugar,_.estos datos incluiran el cuantiñcador, si
+  se predijo posibilidad o certeza del fenómeno, y si es un viento nos dira
+  además el origen.
+
+  5. Preguntas sobre la fecha en que se produjo un fenomeno en un lugar
+  concreto.
+
+  — ¿Cuando <verbofenom> en <Iugar> ?
+  Ejemplos:
+
+  — ¿Cuando,llovio en el sur de Galicia?
+  - ¿Cuando nevo en el Cantabrico?
+
+  Las respuestas que nos proporcionará el sistema nos indicaran la fecha
+  en que ocurrió el fenómeno, de qué foma actuó dicho fenómeno, si se predijo
+  la posibilidad o la certeza de que se produjera el fenómeno, y en las zonas en
+  las que se produjo (caso de no haberla especificado).
+
+  6. Preguntas sobre el lugar en que se produjo un fenomeno un dia
+  concreto.
+
+  - ¿Donde <verbofenom> el <dia fecha, fecha> ?
+  Ejemplos:
+
+  - ¿Donde llovio el 26/2/97?
+  - ¿Donde nevo el jueves 27/2/97?
+
+  Las respuestas que nos proporcionará el sistema nos indicaran el lugar
+  en que ocurrió el fenómeno, de qué forma actuó dicho fenómeno, si se predijo
+  la posibilidad o la certeza de que se produjera el fenómeno, y en las zonas en
+  las que se produjo.
+
+  Respuesta a las preguntas: Una vez realizada una pregunta, el sistema
+  intenta encontrar todas las posibles respuestas a dicha pregunta, enumerando
+  todos los casos que la satisfacen. El sistema irá mostrando una a una y
+  pidiendo al usuario que vaya pulsando tecla para mostrar el siguiente caso.
+  Cuando se acabe el tratamiento de la pregunta, retomaremos al menú
+
+  pr¡ncupal. …"
+
+
+  Salir.
+
+  Para detener la ejecución de nuestro programa debemos escoger la
+  opción 3 del menu principal.
+
+  Cabe destacar que al salir del programa podemos seguir consultando
+  las predicciones introducidas usando el predicado 'tiempo(D, FCH, FEN,
+  ORIG, CUANT, LUG, ZON, POSIB )'. El significado de los parámetros de este
+  predicado es el siguiente:
+
+  - D : Dia de la semana en que se produjo el fenomeno.
+
+  - FCH : Fecha en el formato dia/mes/año
+
+  - FEN : El fenómeno al que hace referencia la predicción.
+
+  - ORIG : Solo usado en caso de que el fenómeno sea 'viento'. Nos
+  indica la dirección de éste. En cualquier otro fenómeno no esta instanciado.
+
+  - CUANT—: Cuantiñcador sobre el fenómeno. (Débil, moderado, etc. )
+
+  - LUG : Lugar en que se produjo el fénomeno.
+
+  - ZON : Restringe la zona del lugar al que afecto el fenómeno
+  referenciado porla predicción. (p.e.: NORTE de Galicia).
+
+  - POSIB : Indica la posibilidad de que se de el fenomeno al que hace
+  referencia la predicción.
+
+  fech('(lueves)',']ueves').
+  fech('(Viemes)','Viemes').
+  fech('(Sabado)','$abado').
+  fech('(Domingo)','Domingo').
+  fech(lunes,'Lunes').
+  fech(martes,Martes').
+  fech(miercoles,'Micrcoles')…
+  fech(iueves,'lueves').
+  fech(viemes,'Viemes').
+  fech(sabado,'$abado').
+  fech(domingo,'Domingo').
+  fech('Lunes','Lunes').
+  fech(Martes',Martes').
+  fech(Mercoles',Mcrcoles').
+  fech(']ueves',']ueves').
+  fech('Víemes','Viemcs').
+  fech('Sabado','$abado')f
+  fech('Domingo','Domingo').
+
+  lug('0rense','0rense',gind,sing).
+  lug('Corunya','€cmnya',fem sing).
+  1ug('Comña'.,'€orunya'.femsing).
+  lug('Lugo',1ugo'.gind.sing).
+  lug('Pontevedra','Pontevedm'.gind.sing).
+
+  lug(Barcelona',3moelom',gind_sng).
+  lug('Tarxagonaº,ngona',gind,sng).
+  lug(Leñda','l…erida',gind,sng).
+  lug(11eida',1eñda',gind,sng).
+  lug('Gerona','Gemua',gind,sng).
+  lug('Girona','Gerona', ' d,sng).
+
+  lug('Vila&mns','Viladecans',gind,sng).
+  lug('A]ella'.'Alella', ' d,sng).
+  lug('Esplugu&s','Esplugues',gind,sng).
+
+  lug('Canarias','€anarias',fem,pl).
+  lug('Asmúas','Ashnias',gind,sng).
+  lug('Murcia','Murcia', ' d,sng).
+  lug('Extremadura','Extremadum'.gindsng).
+  lug(Malaga',Malaga',gindsng).
+  lug(Madrid',Madñd',gindsng).
+  lug('Sevilla','$evilla'.gindsng).
+  lug('Galicia','Galicia',gind.sng).
+  lug('Castilla'.'€astilla'.gind.mg).
+  lug('[mn'.'1mn'.gind…sng).
+  lug('Rioja'.'Rioja'-fcm.mg).
+  lug(Nmm'.Nmam'.gind.mg).
+  lug('Aragon'.'Amgm'.gind.mg).
+  lug('Catalunya'.'€alalunyaí…sng).
+  1ug('Cataluña','€atalunya',gind,sng).
+  lug('Cantabrioo','€anlú'mo2msc,sng).
+  lug('Andalucia','Andahjaúnd,sng).
+  lug(Baleares','Baleares',gind,sng).
+  lug(?iñneos',?iñneos',ms…—,“ . ,¡
+  lug('Estrecho',£strecho',msc,sng).
+  lug('Cantabria','€antabria',…
+
+  4) JUEGOS DE PRUEBA
+
+  El juego de pruebas que proporcionamos se encuentra en el fichero
+  JPT.TXT. y su contenido es:
+
+  Dia 26/02/97 (Miercoles) : Precipitaciones debiles a moderadas en
+  Galicia, moderadas en el norte de Castilla y en las comunidades del
+  Cantabrico y debiles en el norte de Navarra. Posibilidad de
+
+  precipitaciones debiles en Baleares.? Poco nuboso en el sur de la
+  Peninsula y en Canarias. Brumas y nieblas en Galicia y en Andalucia
+  occidental. Temperaturas sin cambios.
+
+  Dia 27/02/97 (Jueves) : Posibilidad de precipitaciones ocasionales en
+  _Baleares . Nuboso en..Asturias, en Cantabria, en Catalunya y en el
+  norte de Navarra. Nubes y claros en el area del Estrecho y en el
+  litoral de Malagá. Predominio de chubascos en Murcia. Brumas y nieblas
+  en Galicia y en Extremadura. Posibilidad de nieblas en el litoral de
+  Andalucia. Temperaturas en moderado ascenso en Galicia y en las
+  comunidades del Cantabrico y en moderado descenso en Baleares. Viento
+  del este moderado a fuerte en el litoral mediterraneo. Viento del
+  norte fuerte en el nordeste peninsular y en el norte de Baleares.
+
+  Dia 28/02/97 (Viernes) : Posibilidad de nubes en el sur de Andalucia y
+  en el litoral de Murcia. Poco nuboso en Catalunya. Precipitaciones
+  abundantes en el litoral del Cantabrico. Temperaturas en uwderado a
+  notable ascenso en, Navarra, en la Rioja y en .Aragon y en moderado
+  ascenso en Galicia. Temperaturas en ligero ascenso en Asturias. Viento
+  del este fuerte en el area del Estrecho y moderado en el litoral
+  andaluz. Viento del nordeste moderado en el norte de Baleares.
+
+  Dia 1/03/97 (Sabado) : Nubes y claros en la zona del Estrecho. Poco
+  nuboso en el norte peninsular. Brumas y nieblas en Asturias. Chubascos
+  en Galicia. Temperaturas sin cambios en la Península y en ligero
+  descenso en las Canarias. Viento del este debil en el area del
+  Estrecho y en el norte de Canarias y moderado en el litoral catalan.
+  Nevadas moderadas en los Pirineos.
+
+  5) CODIGO FUENTE
+  TIEMPO.ARI
+  :- public maín/O,restart/O.
+
+  %“ oºo Nada mas comenzar cargamos el fichero de predicados extra
+  main :-
+
+  consult('texto.ari'),
+
+  consult('respuesari'),
+
+  mainaux.
+
+  %“ oºo Llamamos a la presentacion y ejecutamos la opcion que el usuario haya
+  %º o% escogido
+  mainaux :- presentacion(0P€lºNl_l),
+
+  ejecutar(0P010Nl_l ).
+
+  %º nº o Borra todas las ocurrencias de un aserto
+  retractaH(X)z-retract(X),fail.
+  retractall(X):-retract((X:-Y)),fail.
+
+  retractall(_).
+
+  %% leer juego de pruebas
+  ejecutar(0P€lONl) :- OPCIONI=48.CIS.
+  deñne_window(ventana.".(4.4),(21.76).(30_27)).
+  cunent_windowbvemana),
+  leertextojp(L),
+  descontraer(L,LR),
+  analizaúp(LR),nl,
+  delete_window(ventam),
+  mainaux.
+
+  %º 0 Lee una prediocion por el teclado
+  cjecutar(0?€lºNl) :- OPCION1=49,cIs,
+  deñne_window(ventana,",(4,4),(21,76)_(30.27)).
+  current_window(_,ventana),
+  leenexto(L),
+  descontraer(L,LR),
+  analizar(LR),nl,
+  delete_window(ventana).
+  mainaux.
+
+  %% Lee una pregunta por el leclarb
+  ejecutar(0P€lONl) :- segundaopdon(0?€lºN l),
+  deñne_window(venm'.(4.4).(2l,76),(30,27)),
+  current_uindw(_.wulzna).
+  leerpregunla(?k£0).
+  demoanG.PREGR),
+  analizarpreg(?k£GR),nl,
+  delete_window(ventana),
+  mainaux.
+  ¿£ ¿
+  I h'
+
+  %% Salimos del programa;—';» '- ': ¡ . ¡
+  ejecutar(0P€lON 1) :- …OPCION1).
+
+  %º o Opcion equivocada. volvemos al menu.
+  ejecutar(0P€10Nl) :- pordefecto(0P€lONl).mainaux
+
+  %% Funcion aux escribe una línea completa con retomo
+  writeln(X) :- write(X),nl.
+
+  %“ 0 Muestra por pantalla una presentacion y toma la opcion
+  presentacion(0P€10Nl):-
+  cls.
+  deñne_window(ventana,",(4,4),(21,76),(30,27)),
+  current_window(_,ventana),
+  write(' Predicciones meteorológicas '),nl,
+  write(' '),nl,
+  write(' Este programa permite introducir textos meteorologicos en la '),nl.
+  write(' base de datos climatológica y realizar preguntas referentes a '),nl.
+
+  write(' estos datos. . '),nl,
+  write(' ' '),Ill,
+
+  write(' '),lll,
+
+  write(' 0. Leer juego de pruebas '),nl.
+  write(' 1. Insertar textos '),nl,
+
+  write(' 2. Realizar preguntas ').nl.
+  write(' 3. Salir ').nl.
+  keyb(0PC10Nl,_),
+
+  delete_window(ventana).
+
+  % Si escogemos salir
+
+  saMOPCION1) :— OPCION1=51, cls,
+  deñne_window(vemana,",(4,4),(21,76),(30,27)),
+  current_window(_,ventana), writeln('Gracias por utilizar nuestro programa'),keyb(X._).
+  delete_window(ventana).
+
+  % Si escogemos la segunda opcion
+
+  segundaopcion(0P€lONl) :- OPCION1=SO,c15__
+  deñne_wdndow(ventana,",(4,4),(21,60),(30,27)).
+  current_window(_,ventana),delete_window(ventana).
+
+  % Opcion no válida
+
+  pordefecto(0P€10Nl) :- 0PCION1X=49. OPCION IX=S0.0PCIONIX=S l,cls,
+  deñne_window(ventana,",(4.4).(21.76)_(30.27)).
+  current_window(_,ventana). mite('0pción no válida.vuelva a
+
+  intentarlo'),keyb(X,_),delete_vvindw“mm).
+
+  %ºoEncasodequelaswsaswymmal
+  restart :- cls.nñte('Progxm … Guante la ejecución'),keyb(K._)hmk
+
+  %% Leemos el lado por tedah
+  leertexto(L)z- write('… la prediccion -'),leer_ñade.0).
+
+  %% Leemos el texto del fichero de predicciones
+
+  leertext0jp(L)t- u..
+  p_ºpelw.txt',r),
+  write('Cargamos de fichero —').
+  leer_frase… ; 9_ r n_
+  .close(X).
+
+  %º 0 Hemos fallado al intentar abrir el ñchero
+  leertextojp(L)z- _ _
+  writeln('ups! !! Parece que el ñchétó no esta!');keyb(l(,_).
+
+  %0 o Leemos el texto de una pregumta
+  leerpregunta(LP)z-
+  write('Preg1mta —'),leer_ñase(LP,0).
+
+  %0 o Analizamos la prediccion entrada por teclado '—
+  analizar(LR) :- analisis(F,LR, [I),
+  |
+
+  analizar(LR) :- writeln('No entiendo la frase. Pulsa una tecla.'),keyb(K,_).
+
+  . %% Para analizar la frase, hay que llamar a la gramatim de predicado
+  analisis(P,X,l]) :- predié(P,X,l]).
+
+  %% Analizamos las predicciones leídas de fichero
+  analizarjp(LR) :- analisisqu,LR,|]l
+  |
+
+  analizarjp(LR) :- vm'teln('No entiendo la frase. Pulsa una tecla.'),keyb(K_).
+
+  %ºoParaanalizarel lex1o_ hayque llamara la gramalimdepredimdo
+  analisí5jp(P-X[l) 1- Prediij(P—XU).
+
+  %“ o Analizamos las preguntas
+  analizarpreg(APR) :- analisispreg(P,APk |]), !.
+
+  %% Cuando falla el analisis de preguntas (hemos acabado), salvamos el
+  %% contenido de tiemp02 en tiempo
+  analizarpreg(APR):- volcar.
+
+  %% Para analizar las preguntas, invocamos la gramatica de preguntas
+  analisispreg(F,APR, [|):- pregunta(f,F,€,L,Z,D,F€HPO$. APR. [] ).…U.F,L,Z_D,FCILPOS).
+
+  %º o Una vez resuelta la pregunta, la tratamos
+  murpreg(T,F,L,Z,D,FCH,POS) :-
+  respuesta(l',D,F€ll£€.Ll.lº05l.
+
+  %º 0 Esto vuelca los predim&s tiemp02 … tiempo
+  volcar :- retract(tiemp02(D.Fch.ORIG.C.LZ.P)),
+  assert(tiemw(D_FG—LF.CRIGC.LLP)),
+
+  volcar.
+  volcar :- true.
+  %
+  % LEXICO
+  %
+  li.
+  ! ¡"
+
+  fech('(Lunes)',1uncs'). …; ; “.
+
+  fech('(h4aúes)',Maúes').
+
+  fech('(h/liercoles)',Mercolesj).,—,…
+  …! … ¡.
+  lug('Peninsula','Peninsula',fem,sng).
+  lug('Espanya',general,fem,sng).
+  lug(España',geneml,femsng).
+
+  zon(litoral,litoral,msc,sng).
+  zon(norte,norte,msc,sng)…
+  zon(sur,sur,msc,sng).
+  zon(este,este,msc,sng).
+  zon(oeste,oeste,msc,sng).
+  zon(nordeste,nordeste,msc,sng).
+  zon(sureste,sureste,msc,sng).
+  zon(noroeste,noroeste,msc,sng).
+  zon(suroeste,suroeste,msc,sng).
+  zon(area,todo,msc,sng).
+  zon(zona,todo,fem,sngj.
+  zon(comunidades,todo,fem,pl).
+
+  orig(norte,norte,msc,sng).
+  orig(sur,sm,msc,sng).
+  orig(este,este,msc,sng).
+  orig(oeste.oeste,msc.sng).
+  orig(nordeste_nordeste.msc.sng).
+  orig(sur&ste.sureste…msc.sng).
+  oúg(noroeste.nom.mscsng).
+  orig(suroeste.….umc.sng).
+
+  cuant(omsional.owsiomLmsc.sng).
+  cuant(omsional.omsional.femsng).
+  cuant(…nm.ahmdante,msc,sng).
+  cuanl(ahmdante.abundante,fem,sng).
+  cuant(nmdemda,modemda,fem,sng).
+  cuant(modemdo,moderado,msc,sng).
+  cuant(ñecuente,ñecuente,msc,sng).
+  cuant(ñecuente,ñecuente,fem,sng).
+  cuant(ñ1erte,ñ1erte,msc,sng).
+  cuant(ñmrte,ñ1erte,fem, sng).
+  cuant(debil,debíl,msc.sng).
+  cuant(debil,debil.femsug).
+  cuant(ocasionalas.omsioual.msc.pl ).
+  cuant(ocasionalaomsioml.fcmph.
+  cuant(abundant&s.ahmdaniaw.pl ).
+  cuant(abundant&….&pll
+  cuant(moderada&…femdl
+  cuant(moderado&undaado.mc.pl).
+  cuant(ñecuenta…mpl).
+  cuant(frecueuta…pl).
+  cuant(fuen&.flmanmu)_
+  cuant(ñ¡erlm&ñnene.fmpl).
+  cuant(debils.debiLm.pl).
+  cuant(debiles.debil.fem.pl).
+
+  M.
+
+  ! kv
+
+  fenom('Viento',viento,msc,…;; = > ;.
+  fenom(ñento',viento,msc,sng).
+
+  fenom('Vientos',víento,msc,a£, .”…
+  , .; =. ._..
+
+  TEXTO.ARI
+
+  %0 o Obtiene una palabra
+  obtiene _palabra(T):-
+  write($Frase—-> $), read(T).
+
+  % Dada una palabra, y el carácter que la sigue, leer el resto de la frase
+  restofrase(Fichero,P,_,|])z-
+
+  ultimapalabra(P), ! .
+  restoñase(Fichem,P,€,[PllPs])z-
+
+  leepalabra(Fichero,€,Pl ,C l),restofrase(Fichero,Pl ,C 1 ,Ps).
+
+  % leer una sola palabra, dado un carácter inicial, recordando el carácter
+  % que venía detrás de la palabra
+  leepalabra(Fichero,€,P,€l)z-
+
+  caracter_unico(€),!,name(P,[€]), et0(Fichero,€l).
+
+  leepalabra(Fichero,€,P,€2):-
+  en_palabra(€,Nuevo€),!,get0(Fichero.€1).
+  restopalabra(Fichero,€1,Cs,C2),name(P. [NuevoCle] ).
+
+  leepalabra(Fichero.€,P,€2)z—
+  get0(Fichero.€ l).leepalabra(Fichero.€ 1.P.C2).
+
+  restopalabra(F ichero.C . [NuevoCle].C2): -
+  en _palabra(C.Nuevo€ ).!,getº(Fichero,€ 1 ).
+  restopalabra(Fichero,€l,€s,€2).
+
+  restopalabra(_.€.[l.€).
+  % los siguientes caracteres forman palabra por si mismos
+
+  camcter_unioo(44). /* , */
+
+  wracter_unioo(59). /* ; */
+
+  mmcter_unico(58). /* : */
+
+  mmcter_unico(63). /* ? */ '
+  caracter_unico(33). /* ! */
+
+  mracter_unico(46). /* . */
+
+  caracter_unioo(l3).
+
+  % los siguientes mracteres pueden aparecer dentro de una palabra
+  % la segunda cláusula de en _palabra comie11e mayúsculas a minúsculas
+
+  en_palabra(€.€)z- C>96.C<123. /* a bz */
+  en_palabra(C.L)z— C>64.C<91L is C+32. /* AB Z */
+  en _palabra(€.€)z— C>47_C<58. /* l 2 9 */
+  en_palabra(39.39). /* ' */
+
+  en _palabra(45.45). /* - */
+
+  v
+  ¿4% las siguientes paidan terminan una frase
+  …
+
+  ultimapalabra('.').
+
+  ultimapalabra('!').
+
+  ultimapalabra('?º).
+
+  ultimapalabra(l3).
+
+  leer1frase(Y,Ficbero)z- write('> ').
+
+  fenom('vientos',viento,msc,sng).
+  fenom('Nuboso',nubes,msc,sng).
+  fenom('Nubes',nubes,fem,pl).
+  fenom(nubes,nubes,fem,pl).
+  fenom('Claros',claros,msc,pl).
+  fenom(claros,claros,msc,pl).
+  fenom('Nieblas',niebla,femij).
+  fenom('Niebla',niebla,fem,sng).
+  fenom(nieblas,niebla,fem,pl).
+  fenom(niebla,niebla,fem,sng).
+  fenom('Brumas',bruma,fem,pl).
+  fenom('Bnnna',bruma,fem,sng).
+  fenom(bmmas,bmma,fem,pl).
+  fenom(bruma,bmma,fem,sng).
+  fenom(lluvia',lluvia,fem,sng).
+  fenom(11uvias',lluvig,fem,pl).
+  fenom(Llovizna',lluvia;fem,sng).
+  fenom(lloviznas',lluvia,fermpl).
+  fenom(nuboso,nubes,msc,sng).
+  fenom(lluvia_lluvia,fem, sng).
+  fenom(Hmias.llmia.fempl).
+  fenom(lloxiznallmíafemsng).
+  fenom('Chubasoos'.llmiamsc.pl).
+  fenom('Precipitaciom'.lluwíafempl).
+  fenom('$ol',sol,msc,sng).
+  fenom('$olwdo',sol,msc,sng).
+  fenom(chubascos,lluvia,fem,pl).
+  fenom(precipitaciones,lluvia,fem,pl).
+  fenom(soleado,sol,msc,sng).
+  fenom(sol,sol,msc.sng).
+  fenom('Nieve',nieve,fem,sng).
+  fenom(rúeve,nieve.femsng)…
+  fenom('Nevadas'.nieve,fem,pl).
+  fenom(nevadas…nieve.fem,pl).
+
+  adj(catalan,'€amlunya'.msc,sug,lugarb).
+  adj(andaluz,'An&lucia'.msc,sng,lugarb).
+  adj(peninsular.?eninsuúa',msc,sng,lugarb).
+  adj(gallego,'Galicia'.msc.sng,lugmb).
+  adj(mediterraneo.Mediterraneo',msc,sng,lugarb).
+
+  adj(occidental.oocidenlal-gind,sng,lugar).
+  adj(oñental,oricntangnd…sng,lugar).
+  adj(septentrional.sqlentrional,gind,sng,lugar).
+  adj(meridionaLmridional.gind,sng,lugar).
+  adj(ligera,ligemfcmsngmlif).
+  adj(ligeras_ligemfemmelít).
+  adj(ligeros_ligcm.mc.pl.mlif).
+  adj(ligero.ligem.msc.mg.mliñ.
+  adj(moderada.moder&fem,sng,cahi).
+  adj(moderada&modemda.fem,pl,calif).
+  adj(modemglo,modemdogmc,sng,mlif).
+  adj(moderados,modera&w,pl,calib.
+  adi(notable,notable,femsngmhñ.
+  adj(notables,notable,fem, '
+  adj(notables,notable,msc,pl,mlif).
+  adj(notable,notable,msc,sng,…_u
+
+  adj(?oco',poco,msc,sng,caliñ.
+  adj(poco,pooo,msc,sng,calii).
+  adj('Pocas',poca,fem,pl,calit).
+  adj('Poca',poca,fem,sng,calif).
+  adj(pocas,poca,fem,pl,calif).
+  adj(poca,poca,fem,sng,calif).
+  adj(Muy',mucho,msc,sng,caliñ.
+  adj(muy,mucho,msc,sng,calif).
+  adj('Muy',mucho,fem,sng,calif).
+  adj(muy,mucho,fem,sng,calii).
+  adj(Bastante',bastante,msc,sng,cahñ.
+  adj(bastante,bastante,msc,sng,caliñ.
+  adj('Bastante',bastante,fem,sng,calif).
+  adj(bastante,bastante,fem,sng,calñ).
+
+  camb(ascenso,ascenso).
+  camb(descenso,descenso).
+
+  sust(cambios,cambios).
+  sust(variaciones.cambios).
+
+  temp('Temperaturas').
+  temp('Temperatura').
+  temp(temperaturas).
+  temp(temperatura).
+
+  prep(en,plug).
+  prep(cabe,pindef).
+  prep(a,a).
+  prep(sin,sin).
+  prep(con,con).
+  prep(de,de).
+  prep('En',plug).
+  prep('Cabe',pindef).
+  prep('A',a).
+  prep('in'.sin).
+  prep('Con',con).
+  prep('De',de).
+
+  arúcul(el,msc.sng).
+  articul(la,fem.sng).
+  articul(los,msc.pll
+  articul(las,fem.pl ).
+  articul('El',msc.sng).
+  anicul('La',femsng).
+  articul('Los'.msc.pl ).
+  articul('Las'.fempl)…
+
+  prob('Probabilidad ).
+  prob('Posíbilidad' ).
+  prob('probabilidad' ).
+  prob('posibilídad).
+  prob('Predominio').
+  prob(predomim'o). ».
+
+  conj(_v). n. * ººº”) ..
+  conj(e).
+  punt('.'). ¡ " * —- . en
+
+  dospunt(':').
+
+  verb(era,vnorm,ser,indef).
+  verb(fue,vnorm, ser,indef).
+  verb(hizo,vnorm,hacer,indef).
+  verb(estaba,vnorm,estar,indef).
+  verb(hubo,vnorm,haber,indef).
+  verb(llovio,vfen,llcver,lluvia).
+  verb(nevo,vfen,nevar,nieve).
+  verb(granizo,vfen,granizar,gmnizo).
+  verb(nublo,vfen,nublar,nubes).
+  verb('flizo',vnorm,hacer,indeñ
+  verb('Estaba',vnorm,estar,indef).
+  verb('I-Iubo',vnorm,haber,indef).
+  verb('Llovio',vfen,llover,lluvia).
+  verb('Nevoº,vfen,nevarfnieve).
+  verb('Granizo',vfen,granizar, granizo).
+
+  parentes_ab('c).
+  parentes_ce(')').
+  interrab('¿').
+  interrce('?').
+  qH(que).
+  QH('Que').
+  com(como).
+  com('Como').
+  cuand('Cuando').
+  cuand(cuando).
+  dond(donde).
+  dond('Donde').
+
+  todofen(úempo).
+
+  ex_obj_f(cielo.cielo.sng).
+  ex_obj_f(cie_los…cielo.pl).
+
+  %
+  % GRAMATICA
+  %
+
+  predic(X) —> l_ped_diaría(X).
+  prediºjp(X) —> l_pled_diaña(x).
+
+  %ºo Preguntas tipo ¿Que … him en Barcelona el lunes lll/l?
+  pregunm(cm…€…fmms) -—>
+  interabrir.qm.cw_msubo(vmrm,hacer,_),expr_lugar(Ll).artiaúº(msc.sug).fecha(D).fecham&s(F
+  CH),ímercemr.pmo.
+
+  preg1mta(annL…€L,l,D,FCI-LPOS) —>
+  interabrir,que.expr_tcmp.verbo(vnorm,hacer,_),arácnlo(mc.mg)fecha(D).fec…&hexpr_lugar(
+  L,Z),interoerrar,mmo.
+
+  pregtmm(wangwmpamc,L,z,D,FCI-LPOS) ->
+  interabrir,que,expr_tenp,veúm(vnorm,haben_).expr_h….múmlo(msc_sng),fecha©),fechames&
+  CH),intercerrar,mmto.
+
+  pregunta(cuant,tempem…waI-LPO$) —>
+  interabrir,que,expr_temp,verbo(vnorm,haber._).articulo(msc.sng),fecha(D),fechme&,expr_lugan(
+  L,Z),intercerrar,punto. :“… ——u ._
+
+  pregumta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+  intcmbrir,que,expr_temp,verbo(vnorm,hacer,_),expr_lugar&,l),articulc(msc,sng),fechames(F€H).imerc
+  errar,pumo. -
+  pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+  interabrir,que,expr_temp,verbo(vnorm,hacer,_),artículo(msc,sng),fechames(FCl—D,expr_lugar&,l),interc
+  errar,punto.
+
+  preg1mta(cuant,temperatum,C,L,Z,D,FCH,POS) -—>
+  interabrir,que,expr_temp,verbo(vnorm,haber,_),expr_lugax(L,l),arúculº(msc,sug),fechames(F€H),inter
+  cerrar,punto…
+
+  preguma(cuant,temperatura,€,Ll,Df€&P0$) —>
+  interabrir,que,expr_temp,vefoo(vnorm,haber,_),articulo(msc,sug),fechames(F€H),expr_lugaú,l).inter
+  cerrar,punto.
+
+  %% Preguntas tipo ¿Que tiempo hizo en Barcelona el lunes lll/1 ?
+
+  _ pregunta(fen,F,C,L,Z,D,FCH,POS) —>
+  interabrir,que,todofepom,verbo(vnomhacer,_),expr_lugar(L,l),articulo(msc,sng),fecha(D),fechamesdº
+  CI—I),intercerrar,punto. '
+
+  pregunta(fen,F,C,L,Z,D,FCH,POS) —>
+  interabrir,que,todofenom,verbo(vnormhacer,_),articulo(msc.sug),fecha(D).fechames(F€H),expr_lugar&
+  ,Z),intercenar,punto.
+
+  pregunta(fen,F,C,L,Z,D,FCI—LPOS) -->
+  interabrir,que,todofenom,verbo(vnomhaben_).expr_lugar(L.l).articulo(msc.sng),fecha(D),fechames(l-'
+  CH).intercenar,pumo.
+
+  pregunta(fen.F.C.L.Z,D,FCH,POS) —>
+  interabrir.que.todofenomverbo(vnorm,haber,_),arúculo(msc,sng),fecha(D).fechames(FCl—D.expr_lugar(
+  L_Z).interoermr_wmo.
+
+  pregunta(fen,F.€.Ll…D_F€flf05) -->
+  interabrir,que,todofenomverbo(vnomhacer,_),expr_lugar(L,Z),articulo(msc,sng),fechames(F€H).imerc
+  errar,punto.
+
+  pregunta(fen,F,€,L,lpf…) —>
+  interabrir,que,todofenom,vedx&xmmhacer,_),articulo(msc,sng),fechames(F€H),expr_lugar(L,l),interc
+  errar,punto.
+
+  pregunta(fen,F,C,Ll,DfCI-LPOS) —>
+  interabrir,que,todofenom,verbo(vnomhaber._).expr_lugar(L,l),atticulo(msc,sng).fechames(FCl-I).inter
+  cerrar,punto.
+
+  pregunta(femF,€,L,l,D,F€l—LPOS) —>
+  interabrir,que,todofenom,verbo(vnorm,haber._).articulo(msc,sng),fechamas(F€fl).expr_lugar&l).inter
+  cerrar,punto.
+
+  %% Preguntas tipo ¿Como estaba el cielo el lunes 1/1/ 1 en Barcelona ?
+  pregunta(fen,cíclo.C.LZ,D,FCI—LPOS) —>
+  interabrir,como.vetbo(vnorm,estar,_),expr_otj_fenom(0B5,N),expr_lugar(Ll),articulo(msc.sng).fecha
+  mes(F CH),interoenar.p1mto.
+
+  pregunta(fen,cielo.C.L.Z,D,FCH,POS) —>
+  interainr,como.verbo(morm,estar,_),expr_otzi_fenom(03],N).arúaúo(msc,sng),fechames(F€….expr_l
+  ugar&,Z)…interoemr.mnto.
+
+  pregunta(femcielo.€.Llpf€&P0$) —>
+  interabrir.como.xmbo(morm,estat,_),expr_obj_fenom(08lN).expr_lugar(Ll),arúculo(msc.sng).fecba(
+  D).fecham&(F€….interoerrar,ptmta
+
+  pregunta(femcielo-€-l.1ch&m& -->
+  interabrinoomo.xerbo(morm,estar,_),expr_obj_fenom(08].…múaxlo(msc,sng),fecha(D).fechames(F C
+  H),expr_lugar(Ll).imeroerrar,pumo.
+
+  %% Preguntas tipo ¿Copo ll_ovio el lunes 1/1/ 1 en Barcelona ?
+
+  pregunta(cuant,F,€,LlDf€f£P05) —>
+  interabrir,como,verbo(vfe…_lugaúl)artículo(msc,sug),fecha(D),fechames(F€ll),interoemr.
+  punto. .
+
+  preg1mta(cuangF,€,L,l,Df€f£P0$) -->
+  interabrir,como,ve1bo(vfen,_,F),artículo(msc,sng),fecha(D),fechames(F€l—D,expr_lugar(L,l).intercenan
+  punto. ' * '
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) -->
+  interabrir,como,verbo(vfen,_,ñ,expr_lugar(L,l),articulo(msc,sng),fecham&s(F€H),intercemr,mnto.
+  pregumta(cuant,F,C,L,Z,D,FCI—LPOS) -->
+  interabrir,como,verbo(vfen,_,ñ,arúculo(msc,sug),fechames(F€ll),expr_lugar&l),intercenar,punto.
+
+  %º o Preguntas tipo ¿Como era la lluvia del lunes 1/ l/ 1 en Barcelona ?
+  pregunta(cuant,F,€,L,l,Df€&P0$) —>
+  intembrir,como,verbo(vnorm,ser,_),articulo(G,N),fenoníeno(F,G,N),expr_lugm(L,l),arúculc(msc,sng),f
+  echa(D),fechames(F€H),intercertar,punto.
+
+  pregunta(cuant,F,€,L,l,Df€&P0$) -->
+  interabrir,como,verbo(vnom1,ser,_),articulo(G,N),fenomeno(F,G,N),articulo(msc,sng),fecha(D),fechame
+  _ S(FCH),expr_lugar(L,Z),intercerrarpmto.
+
+  pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+  interabrir,como,verbo(€norm,ser,_),arúculo(G,N),fenomeno(F,G,N),expr_lugar(Ll),artiaúo(msc,sng).f
+  echames(F€H),imercerra¡-,puma
+
+  preg1mta(cuant,F,€,L,l,D,F€l—LPOS) —>
+
+  interabrir,como,verbo(vnorm, ser,_),articulo(6,N),fenomeno(F.G,N),articulo(msc. sng),fecham&s(F€H).e
+  xpr_lugar(L,Z),intercerrar,punto.
+
+  %% Preguntas tipo ¿Que lluvia hubo el lunes UU] en Barcelona ?
+  pregunta(cuant.F.C.L.Z,D,FCH,POS) —>
+  interabrir,que,fenomeno(F,_,_),verbo(vnorm,hacer,_),expr_lugar&l).arúaúo(mmsng)_fecha(D).fecha
+  mes(FCH),intercerm.punto.
+  pregunta(cuantF.€L.l.Df€&lº0$) -->
+  interabrir,que,fenomeno(F._._).verbo(vnom1,hacer,_),articulo(msc,sng),fecha(D),fecham&s(F€ll).expr_l
+  ugar(L,Z),intercenar,wnto.
+  pregunta(cuant,F,€,L,l,Dj€l—LPOS) —>
+  interabrir,que,fenomeno(F ,_._).vedx>(vnorm.hacer._).expr_lugar(L,l),arúculo(msc,sng),fechames& CH)
+  ,intcrcerrar,punto.
+  pregunta(cuant,F,€,L,l,Df€&P0$) —>
+  interabrir,que,fenomeno(F,_,_),verbo(vnorm,hacer,_).arúaúo(msc.sng).fechames(F€H),expr_lugar&l)
+  .intercenar…punto.
+  pregunú(manF.€,L,l,D,F€&lº05) —>
+  interabrir.que.fenomeno(F,_,_),verbo(vnormhaber.J.expr_lugr(Ll),aniculo(msc,sng),fecha©).fecha
+  mes(FCH),inleroenar.mnto.
+  pregunta(cuant£€_L_l.Df€&P05) —->
+  interabrir,que.fenomeno(F ,_,_),verbo(vnorm.haber._).arúaúo(msc,sng),fecha©),fechames(f* C H).expr_l
+  ugar(L,Z),interoenanmnto.
+  pregunta(cuanL£€.L,l.Df&?0$) —>
+  interabrir,que.fenomeno(F ._._).verbo(morm.hd)er._),expr_lugar&,l),articulº(msc.sng).fec…C H)
+  ,ínteroerrar,pumo.
+  pregunta(cuam£€.Ll,DfC&?0$) —>
+  interabrir,que.fenomeno(F ._._).verbo(moumhaber,_),articulo(msc.sng).fecham&s&€ H).expr_lugar(L1)
+  ,intercerrar.pumo.
+
+  ¡
+  %% Preguntas tipo ¿Cuando “mio en Barcelona?
+  pregunta(axamW_€…fCl-LPOS) —>
+  interabrir,axan&sutn(xfm_.VF),expr_lugar©,l),intemcmnpmm
+
+  %% Preguntas tipo ¿Donde nevo el lunes 1/1/ ]?
+
+  pregunta(don,VF,€,L¿Df€&P0$) ->
+  interabrir,donde,verbo(vfen,_,VF),articulo(msc.sng).fecha(D).fecham(F€H),imercerm,mma
+  pregunta(don,VF,€,L,l,D,F€l—LPOS) —>
+  interabn'r,donde,verbo(vfen,_,VF),arúculo(msc.sng).fecham&s(F€íl),interoertarpmto.
+
+  expr_obj_fenom(03],N) --> articulo(msc,N),expr_ '_fen(0B],N).
+
+  l_pred_diaria([XlY]) --> pred_diaña0(),l_pred_díáña(Y).
+  1 _pred_díaria(X) --> |].
+
+  pred_diaria(D) --> expr_fecha(D,F€),dospumtos,l_&ases©£ C).
+  expr_fecha(D,F€) —> dia,fechames(F€),fecha(D).
+
+  fecha(D) --> [W],ífech(W,D)3.
+
+  l_frases(D,F€) —> fmse(D,F€),l_ñases(Df€).
+  l_frases(D,F€) -> I].
+
+  %º () Fenomeno, lista de cuanliñwdom y lugares
+  _ frase(D,FC) --> expr_fenomeno(F,0,€,G,N,POS),l_…M_IW,FC,F,O.G,N.POS),['.'].
+  frase(D,FC) --> ["],l'-']—
+
+  %º o Adj fenomeno lista lugares
+  ñase(D,F€) —> expr_fenomeno(F,0,C,G,N,POS),I_6XpI_MgM(D,FC,F,O,C,POS).['.'].
+
+  frase(D.FC) —> expr_temp,l_cuautif_lugart(D,F€),['.'].
+
+  %º 0 Lista de cuantiñmdom y lugares
+  % cuantif lugar y cuantif lugar
+  l_cuantif_lugar(D_FCj-',O.G.N_POS) —> expr_cuantif(€1,G,N),l_expr_lugar(D.FC.F,0_C1.POS).
+  conjm1,expr_cuantif(€2,G.N),l_expr_lugar(Df€£0.C2.POS).
+  l_cuantif_lugar(Df€f,0,&N.?0$) —> expr_cuantif(€,G,N),l_expr_lugar(Df€.F,0.€.P0$).
+  l_cuantif_lugar(l),F€f,0,&N.l'0$) ->
+  expr_cuantif(€,G,N),l_expr_lugar(Df€f.0.C.POS),['.'],l_cuanúf_lugar(D,F€,F,0,G,N.P0$).
+
+  l_cuantif_lugart(D,F€) —> expr_cuantiñ(€).(…D.FC,wmpemmra,0£,general,mdo,ciena);».
+  l_cuantif_lugart(D,F€) -> expr_cuantiñ(€).l_expr_lugar(Df€.tempe…0,C,cierta).
+  l_cuantif_lugart(Df€) -->
+  expr_cuantiñ(€).l_expr_lugar(D,lº€,tempemm0£.eierta),[','],l_cuantif_lugart(D,FC).
+  l_cuantif_lugarl(D.FC) —->
+
+  expr_cuantiñ(€ l ).l_expr_lugar(D,F€,temperatum0£ 1 .cierta),conjun,expr_cuautiñ(€2).l_expr_lugar(
+  D,FC,temperatum0.€2,cierta).
+
+  %“ 0 Lista de lugam
+
+  1_expr_lugar(D.F€-F.0.€.P0$) —> expr_lugar(Llll),mnjumexpr_lugar(úú).
+  ítratar(D,F€,F,0,€,L1,Z1,POS)]»,íW.FC.F.O.C,LZ,ZZ,POS); .
+
+  l_expr_lugar(DJ-'C.F.O.CPOS) —> expr_lugar&l),f,1,l_expr_luwafC .F ,O,C,POS),
+  (mur(D,FC,F,O,C,L,Z,POS)L
+
+  l_expr_lugax(D.F€.I-'.O.C.POS) --> expr_lugar(L,b,im….FC.F.O.C.LZ,POS)E.
+
+  1_expr_lugar(D.FC .F.O.C POS) —> [|.
+
+  th(D.FC.F.O.C.LZ.POS) :-
+  ( …(WD,FC,F,O,C,L,Z,POS)),
+  …(…D_FC,F,O,C,L,Z,POS»,
+  b¿ mite('.').
+
+  em_lm> prepos(plug),lugar(L…J,adja(Z—_._Jugar). %% p-e- Andalucia ºccidental
+  expr_lu , — lug),lugar(L._…_).
+
+  expr_lugar(L,Z) —> prqsos(plug).artículo(0.….zonle.….
+  adjet(L.G.N.lugarb). %% el norcksle peninsular
+
+  !
+
+  eXpr_lugar(L,l) --> prep05(plug),artímlo(G,mlugar(hG,N),adjet(Z,_ulugar).
+
+  eXpr_lugar(L,todo) --> prepº$(plug),articulo(6,N),lugarme. '
+
+  expr_lugar(L,l) --> prepos(plug),arúculo(G,N),zºná(l,G,N),prepos(de),lugar(L,_,_).
+
+  expr_lugm(L,Z) --> prepos(plug),arúculo(G,N),zona(l,G,N),prepos(de),lugar(L,_,_).
+
+  expr_lugar(L,l) -—> prepos(plug),articulo(Gl,Nl),zona(Z,Gl,N1),
+  prepos(de),articulo(G2,N2),lugar(L,_,_).
+
+  expr_cuantif(€,G,N) -> cuantif(C1,G,N),prepos(a),cuanúf(€2,G,N),íconmt([C1,' a ',C2],C)).
+  expr_cuantif(€,G,N) —> cuantif(C,G,N).
+
+  expr_cuantiñ(€) --> prepos(sin),sustant(€l),íooncat(['siñ ',C1],C);.
+
+  epr_ºuantiñ(c) -> prºp05(plug),adjet(A,G,N,calit),cambiº(C1),í00ncat([A,' ',C1],C);.
+
+  expr_cuantift(€) --> prepos(plug),adjet(Al,G,N,calii),
+  prepos(a),adjet(A2,G,N,calif),mmbie(€1),íoonmt([Al,' 3 ',A2,' ',Cl],C)).
+
+  %0 o Fenomenos tipo bnfmas y nieblas, nubes y claros
+
+  expr_fenomeno(F,nulo,normal,61,Nl,cierta) —>
+
+  fenomeno(F 1,Gl,N1),conjun,fenomeno(F2,G2,N2),íconwt([Fl,' y ',F2],F)).
+
+  expr_fenomeno(F,nulo,normal,G,N,cíerta) —> fenomeno(F.G.N).
+
+  expr_fenomeno(F,nulo.normal.G.N,probable) ->
+
+  probab.prepos(de).fenomeno(F 1 .G1.N ] ).conjunfenomeno(F2.62.N2),ícomt(lñ.' y ',F2],F) ;.
+
+  expr_fenomeno(F,nulo,nomal.G.N.probable) —> probab.prepos(de),fenomeno(ñ6,N).
+
+  expr_fenomeno(F,nulo,C,G,N,cierta) —> adjet(C_G.N.mlif).fenomeno(£&….
+
+  expr_fenomeno(viento,0,C,G,N,cierta) —> femmno(viemo.6.N).pmpos(de).
+  arúaúo(G,N)_odgen(ºl.G.….íoomt(l'del '.01].O);.
+
+  expr_temp --> temperat.
+
+  di('Dia').
+
+  di(dia).
+
+  barra('/').
+
+  día -> [W].(di(W);.
+
+  fechama(F) —> [I l ]. ( integer(ll),int_text(ll,W1);,[W2],ibarra(W2))—.
+  [I3].(integer(l3),ínt_text(l3,W3)),[l4].íbana(W—t);.
+  [15].íinteger(15),int_text(15,W5)).
+  (…([Wl,W2,W3,W4.WS]_I—º)).
+
+  lºgar(L,G,N) —> [WI-ilug(W.L,G,N)3.
+
+  cuantif(C,G,N) —> [Wl.ícuant(W,€,G.N)).
+
+  fenomeno(F,G.… —> [W]. ífenom(W.F.G.N) ; .
+
+  todofenom —> [W].(lodofen(W)).
+
+  temperat —> [Wl.(temp(W)).
+
+  ººnjun --> [WI-ícºnj(w)).
+
+  adjet(A,G,N.h -—> [W].(adj(W_A.G.N.T):.
+
+  probab --> [Wl.iprde)3.
+
+  sustant($) —> [W].ísmt(W.$);.
+
+  cambio(C) —> [W].(camb(W.€)3.
+
+  p1mto—->[W].ipum(W);_
+
+  despuntºs—>[Wl.ímm(wn.
+
+  puntazo—>[W].íwmm3.
+  preposm—>[Wl,ípwp(wmk.
+  articulo(G,N)—>[W].(articul(W,&N)j—.
+  ZOM(Z,G,N)—>[W],ízon(wl,&N)?.
+  origen(0,G,N) --> [W], (orig(W,0,G,N);.
+
+  interabn'r --> [W],íinterrab(W)).
+
+  intercerrar --> [W],íinterrce(W)¡.
+
+  que --> [W],íqu(W))-
+
+  cuando --> [W],ícuand(W)).
+
+  donde --> [W],ídond(W))—.
+
+  como --> [W],ícom(W)).
+  verb(hizo,vnorm,hacer,indeñ.
+
+  verbo(T,l,F) --> [W],íverb(W,T,l,F);.
+  parentesisabrir —> [W],íparentes_ab(W)).
+  parentesiscerrar --> [W],íparentes_ce(W)).
+
+  expr_obj_fen(03],N) —> [W],íex_obj_f(W,0B],N))
+
+  RESP.ARI
+
+  %º () Mostramos por pantalla un resultado de la pregfmta —
+  respondefenom(f,D,FCH,BFCH,F,BF,C,BC,L,BL,Z,BZ,O,BQP,BP) :-
+  iñhen(BFCH———cieno,
+  (writeln(' Dia': D),
+  writeln(' Fecha': FCH)
+  )),
+  ifthen(BF==cierto,
+  (
+  writeln(' Fenomeno': F),
+  iñhen(F==viento,
+  (
+  ifthen(30=cierto,writeln(' Origen': O))
+  ))
+  ) …
+  ), '
+  ifthen(BC==cierto,writeln(' Cantidad': C)),
+  iñhen(BL=cicrto,writeln(' Lugar': L)),
+  iñhen(BZ==cierto,writeln(' Zona': Z)),
+  iñhen(BP———cierto_writeln(' Posibilidad'z P)).
+  wn'teln(' — Pulsa tecla para continuar ——').
+  keyb(l£_).
+
+  %º oºo Respuesta a los fenomenos en general
+  %% Me preguntan por los fenomenos en general del pais
+  %% Busco todas los fenomenos en un dia
+
+  …?“ respuesta(fen,D,FCI—LF,C,generaLtodo,P()$) :-
+  retract(tiempo(D,FCI—LFEN,ORIG,FENCUANT,LUGA&ZONAPOSIB)),
+
+  responckfenom(fen,D,F€l—Lfalso,ñ&deno,FENCUANT.&eH0.LUGAR,den0,ZONA_cierlo.O
+  RIG.C¡€HO.POSIB.CÍ€TÍO).
+  mesta(fen,D,FCI-LF,C,general.todo.?0$).
+  assert(úempo(D,FCPLFEN_ORIG_FENCUANT…LUGARZONA,POSIB)).
+
+  %% Me preguntan por un lugar concreto. cualquier zona
+  %ºoBuscosisedioenwelugmyentodaslaszoms
+
+  respuesta(feme…£€.l.…tocb-lº05) :-
+  mraa(tiempo(D_l—'CPLFEN.ORIG,FENCUANT,LZONA.POSIB)),
+
+  respondcfemn(me.FCI-Lfalso.m.cierto,mw ANT .cieno.L.falso__lºNA,cierto.0RlG.cie
+  rto,P0$lB.cieno).
+  …….FCHRC_LJO&,POS).
+  M(WD.FCHFEN,ORIG,FENCU ANT _LZONAPOSIB)).
+
+  %ºoMepmgumanporunlngmyumzonaenconcreto
+  %ºoBuscosisedioenmlugaryesazona
+
+  respuesta(fen,Df€lí£€,Ll£08) :-
+  rem(úempo(D,F€l—LFEN.ORIG.FENCUANT.L.Z.POSILB)).
+
+  respondefenom(fen,D,F CH,falso_F£N c1enoFI-INCU ANT ,cieño,L,falso,l,falso,0Rl&cierto?0
+  SIB.cierto),
+  ¡esp11esta(fen,D,FCH£C.Ll.…$).
+  assert(tiempo(D,FCHFEN.ORIGFENCUANT,L,Z,POSIB)).
+
+  %“ o Me preguntan por un lugar y una zona en conbfeto
+  %% Busco si se dio en ese lugar ytoda la zona
+
+  respuesta(fen,D,F€H,F,C,L,Z,POS) :—
+  retract(tiempo(D,FC&FEN,ORIG,FENCUANT,L,todo,P0$lB)),
+
+  respondefenom(femeC&fa15ofEN,deúo,FENCUANT,deM,L,falso,Z_falso.0RlG.cierto.PO
+  SIB,cierto),
+  respuesta(fen,D,F€&ñC,L,Z,POS), ""
+  asmn(úemw(D,F€&FEN,0MG,FENCU ANT ,L,todo,P0$lB)).
+
+  _ %º o Me preguntan por un lugar
+
+  %ºobusco si se dio en toda la peninsula
+
+  respuesta(fen,D,F€&F,€,L,todo,P0$) :-
+  retract(tiempo(D,F€H,FEN,ORIG,FENCUANT,g&€M.ZONAPOSIB)),
+
+  respondefenom(fen,D,FCILme,FEN,ckMo.FENCU ANT ,cierlo.L.falsolfalso,0RlG.cieno.P0
+  SIB,cierto), resmesta(fen,D,F€&F.€,L.todof05).
+  mmm(me_FCHF.CL10&POS).
+  asscrt(tiempo(D_FCI—LFEN_ORIG_FENCUANT.gemMZONAPOSIB)).
+
+  %º oºo Fin Fenomenos en general
+
+  %“ oºo Cuanúñmdor en general. No me preguntan por los fenomem sino por
+  %º o% como eran actos fenomenos
+
+  %ºo Me preguntan por los fenomenos en general del pais
+
+  %º o Busco todas los fenomenos en un dia
+
+  respuesta(cuangD,FCI-LF,C,general,todo,P0$) :-
+  re…(úemm(D,F€&F,0MG,FENCU ANT .LUGAR.ZONA,POSIB)).
+
+  respondefenom(cuant,D,F CI—Lfalso,F,falso_I-'ENCU ANT .dm…LUGARderto,l0NA,cierto.0Rl
+  G.cíerto,P08IB,cierto),
+  respuesta(cuant,D,F€H,F,C.gemral.todo.P05),
+  assert(tiempo(D,FCI—LF,ORIG_FENCUANT.LUGARZONA.POSIB)).
+
+  %ºo Me preg1mtan por un lugar concreto. ankpier zona
+  %ºoBuscosisedio eneselugaryentochslaszonas
+
+  respuesta(cuanLD.F€l—LF.CLW…KB) :—
+  …(…D_F…P.ORIG,FENCUANT.LZONA.POSIB)),
+
+  respondefemm(aanfC&falso£ ,cierto,FENCU ANT .cima.LfalsolONAdeno.0Rl&cien
+  0.P()SIB.deno).
+  WMLD,FCH,F,C,LJ0&P05)…
+  …(WD,FCHF,ORIG,FENCUANRLZONAPOSIB)).
+
+  %ºo Me preguntan por un lugary una zona en concreto
+  %% Busco si se dio en ese lugary esa zona
+
+  respuesta(cuam,D,F€H,F,C,L,Z,POS) :-
+  retract(tiempo(D,F€&ñORIG,FENCUANT,L,Z,POSIB)),
+
+  respondefenom(cuant,D,F€&falsoj,cieúo,FENCUANT,ciertoL,falso,l,falso,0Rl&cicrto.lº05
+  [B,cierto). '
+  respuesta(cuant,D,FCI-LF,C,L,Z,POS),
+
+  assert(tiempo(D,FCH,F,ORIG,FENCUANT,L,Z,POSIB)).
+
+  %% Me preguntan por un lugar y una zona en concreto
+  %ºo Busco si se dio en ese lugar y toda la zona
+
+  respuesta(cuant,D,F€l—LF,C,L,Z,POS) :-
+  retract(tiempo(D,FCI—LF,ORIG,FENCUANT,LJ0&,POSIB)),
+
+  respondefenom(cuant,Df€£l,falsof ,cierto,FEN€U ANT ,ciertoL,falso,l,falso,0RlG.cieúo.lº0$
+  [B,cierto),
+  regpuesta(cuant,Df€H£C,L,Z,POS).
+  …(úemMD,FCHF,OMG,FENCU ANT ,L,todo,P0$lB)).
+
+  %0 0 Me preguntan por un lugar
+  %ºobusco si se dio en toda la peninsula
+
+  respuesta(cuant,D,F€Hf…C.L.todo.P0$) :-
+  retract(úempo(D_F CI—LF.ORIG.FENCUANT . generallONA.P05l8)).
+
+  respondefenom(anD_mealso.F.cimo.l—'ENCU ANT .cierto.L.falsol.falso.0Rl&cíeno.P05
+  [B.cierto).
+  …(MLD.FCHF.C.L.MPOS).
+  …(úe…D.FCHF.ORIG,FENCUANT , general,lºNA,P0$l8)).
+
+  %º oº 0 Fin Cuanúñcadores en general
+
+  %º 0 Respuesta dias
+
+  %º 0 Nos estan preguntando cuando se dio un fenomeno en un sitio
+  respuesta(cuan,D,F€H,F,€,L,todo,POS) :-
+  retract(tiempo(DlAfE€H&F,ORIG,FENCUANT.LZONAPOSIB)).
+
+  respondcfenom(cualeAFl5C%cieno-F.cieno.FI-INCU ANT .cieno,L,falso,20NA,deno.0m
+  G.cierto,P0513cierto).
+  WMD.FCPLF,C.LJO&,POS),
+
+  assert(tiemple…C HAF.ORIG_I—ENCU ANT ,L,ZDNA,POSIB)).
+
+  %% Nos estan preguntando amado se (ño un fenomeno enun sitio, en una zona
+  respuesta(cmD-F€l-LF.C.LZ.POS) :- …(úempo(DlA,l—"ECHA,F,ORIG,FENCUANT.LZ.POSIB)).
+
+  respondefenom(aanlAj-'ECHAcierto,F,cierto,F5N€U….cierto.L.falsol.falso.ORIG.ciert
+  0,POSIB,cierto).
+  respuesta(cuameG££€.LZ.ms).
+
+  mMÚWDIAFECHAF,ORIG,FENCUANTL.LR)SIBD.
+  %º 0 Fin respuma dias
+
+  %º () Respusta lugares
+
+  %% Nos estan preguntando donde se dio un fenomeno
+  respuesta(domD,FC&F,€,£,l£0$) :-
+  retract(tiempo(D,FCI—LF,ORIG,FENCUANTLUGARZONA,POSEB)),
+
+  respondefenom(don,D,F€l—Lciertoj ,den0,FENCUANT ,cieno,LUGAR,cien010NAcieno.om
+  G,cierto,P051B,cierto). " " '
+  respuesta(donp,F€H,F,C,L,Z,POS).
+
+  assert(úempo(D,F€&F,0RlG,me ANT ,LUGAR,ZONA,POSIB)).
+  %0 0 Fin respuesta lugares
+
+  %o o Si no se puede encontrar un fenomeno en un sitio, se busca en un sitio padre
+
+  %%respuesta(fen,D,F€H,F,C,L,Z,POS) :-
+
+  %ºo padre(L2,L,Z2),
+  %% respuesta(fen,Df€flj,€,L2,22,POS).
+  _ %%mspuesm(ng,FCEF,C,L,Z,POS) :-
+  %ºo ' padre(L2,L,22).
+  %% respuesta(cuant,D,F€H,£C.L2.ZZ.POS).
+  %%respuesta(temp,Df€flf,C,L,Z,POS) :-
+  %ºo padre(L2,L,22),
+  %% respuesta(cuant.D.F€H£C.L2.ZZ.POS).
+
+  %ºo Respuesta para cuando no queda información
+  respuesta(l".D.FCl—LF.C.LZ-R)S) :- write('No queda mas informacion').keyb(l£_).
+  %º o %% asi obligamos a back1racking
+
+
+
+
+
+
+
+
+  read_line(Fichero,ll),anayade_pumo(ll,ZZ),list_text(l,Z2).
+  convierte_a_lista(2,Y).
+
+  leer_frasejp(Y,Fichero):- write('> '),
+  read_shing(Fichero,5000,ll),
+  anayade_puntojp(Zl,l2),
+  list_text(le),
+  convierte_a_lista(l,Y).
+
+  convierte_a_lista(lin, [Pal 1Atom|X]) : -
+  saltarblancos(2in,2inl), **
+  separa_comas(Zinl ,Zin2),
+  primera _palabra(Zin2,Pal ] ,Zout 1 ).
+  name 1 Atom,Pal 1 ),
+  resto_frase(Zoutl ,X).
+
+  .r
+
+  %Inserta un espacio delante de cada coma
+  separa_comas([€arllin],Zmú)z- Car=47,
+  separa_comas(lin,lin2).
+  oonmtena([32,47_32]lin210ut).
+  separa_comas([€arllin]lout)z- Car=44.
+  separa_oomas(lin.lin2).
+  oonmtena([32_44_32]lin2.lom).
+  separa_comas([€arllin],loul)z- Car=46,
+  _comas(Zin.lin2).
+  oonmtena([32,46,32],lin2…lout).
+
+  fº sepam_comas([€axllin],loú)z- Car=63,
+  sepam_comas(lin,lín2),
+  concatena([32,63,32],Zin2,20ut).
+  sepam_ooms([€arilin],lout)z- Car=168,
+  separa_comas(lin,lin2).
+  concatena([168,32].Zin2.20ut).
+
+  separa_comas([€artlinllout)z- ñnlinea(Car).
+  sepam_oomas(lin.lin2).
+  concatena([32].lin2.lml).
+
+  separa_comas([€arl.l€arl)z- punto(Car). !.
+  separa_comas([€arl.[€ar])z- intercermr(€ar).!.
+  separa_comas([€arl.l€arl)z- ñnlinm(Car).!.
+  sepam_comas(l€adlinl.[€adlaúl)z— Cañ=—H.
+  sqnm_comas(Zin,lout).
+
+  %Concatenacion de (bs listas
+  concatena([].L.L).
+  concatena([XlLl].L2.[XIL3]):-oonmtena(Ll,L2.L3).
+
+  contraccio£1(del, [de,ell).
+  conmion(al,[a,ell).
+
+  “" …,Uí.'"
+  descontraer([XlY],R) :- contraccion(XLX). dsoonuaer(Y,RR), concatena(LX,RkR).
+
+  !
+
+  descontraer([XlY],[XlR]) :- not(contraccion0(,_)), descontraer(Y,R).
+
+  anayade_punto(ll ,Z.-2) string_ length(Zl ,,Long)
+  ifthenelse(Long=0, concat(Zl, $Frase vacía $ ,,Z3) concat(Zl, $$ ,Z3))_
+  stdng_length(l3, Long),&c(Long,L),
+  nth_char(L,23,C),
+  ifthenelse(€)==46,concat(l3,$.$,ZZ),wnwt(l3,$$,l2)).
+
+  anayade_puntojp(ll ,:-Z2) string_ length(Zl, Long),
+  ifthenelse(Long=0, ooncat(Zl, $Frase vacía. $ ,Z,3) concat(Zl, $$,Z3 )).
+  string_ length(Z3, Long),
+  dec(Long,L),
+  nth_char(L,l3,€),
+  iñhenelse((CX——
+  concat(Z3,$.$,ZZ),concat(Z3,$$.22)).
+
+
+
+
+
+  ,.-
+
+  saltarblancos([€aracterllin],Zout):- Caracter=32, saltarblancos(szom).
+  %%saltarblancos( [CaracterlZin] , [Caracte112in] ) : -Camcteñ=3 2 , ! .
+
+  saltablancos([€aracterllinl.hut)z- Caracter=10. saltaxblanoos(szout).
+  saltarblancos([€aractedlin]lout):- Caracter= 1 3. saltarblancos(Zin,lout).
+  saltarblancos([€aractedlinl.[Caracterilin])z-Caracteñ=32.
+  Camcleñ=lº.
+  Camcteñ=l3.!.
+
+  Prímera_mlabm([Car],l],[Car])l- Wntº(Car),!.
+  primera _palabra( [Car|Zin],|],lin)z- espacio(Car), !.
+  primera _palabm([€arllin],[CarlX],Zout)z- primera _palabra(lin,)£loú).
+
+  resto_frase([€ar], [P]):—punto(€ar),name(P, [46]), !.
+
+  resto_frase(lim [PalAtole])z- saltarblancos(linlinl ).
+  primera _palabra(linl.?allout ] ).
+  name(PalAtomlºal).
+  resto_fxastom 1 .X).
+
+  espacio(32).
+  punto(46).
+  ñnlinea( 10).
+  ñnlinea( 13).
+  intercerrar( 63).
+  coma( 44).
+
+  EXTRA.ARI
+
+  %“ () Atencion, estos predicados sirven para crear uh'arbol de lugares
+
+  %º o del siguiente tipo
+
+  %% Península
+
+  %% Catalunya Galicia
+
+  %“ o Barcelona Tarragona Orense Lugo
+  %“ o Viladecans Esplugues
+
+  %º o
+
+  %ºo Tambien se especiñca la zona en la que se encuentra
+  %º o Se ha implementado, funcionaba correctamente, pero se colgaba muy
+  %% a menudo.
+
+  %“ ()
+  %ºo Ejemplo: ¿Que viento hubo en Viladecans el 1/3/97?
+
+  _ %º o Respondia correctamente el viento que afectaba al litoral
+  %% de Catalunya.
+
+  padre('Galicia','0rense',sur).
+  padre('Galiciaº,'0rense',este).
+  padre('Gahcia','0rense'.todo).
+  padre('Galicía',lugo',norte).
+  padre('Galicia',1ugo',este).
+  padre('Galicia',lugo',todo).
+  padre(ºGalicia',?ontevedra',au).
+  padre('Galicia'.?ontevedra',o&e).
+  padre('Gahcia',?ontevedra',todo).
+  padre('Galícía','€omnya',oeste).
+  padre('Gahcia','€omnya',nortc).
+  padre('Galicia','€orunya',todo).
+
+  mdre('Cataluma',"l"arragona',sur).
+  padre('Calalunya'.Tarragona',oeste).
+  padre('Catalun_va'.Tarragona',litoral).
+  padre('Cataluny-a2ngona',todo).
+  padre('Catalunya'…'6erona',norte).
+  padre('Cataluma'.'6erona',este).
+  padre('Catalun_va'-'6erona',litoral).
+  padre('Catalunya'.'0emna'.todo).
+  padre('Catalunya'.'8aroelona',norte).
+  padre('Catalunya'38arcelona',este).
+  padre('Catalun_xa'.'Baroelona',litoral).
+  padre('Cataluma'fBaroelonaktodo).
+  padre('Cataluma'.'lxñdaínorte).
+  padre('Catalunyaí'lxridalo&el
+  padre('Cataluma'.1eñch'.todo)…
+
+  padre('Barcelona'fVi…ílitoml).
+  padre('Baroelom'.'“…m'.to&).
+  padre('Barcelona'l/dela'.to&)).
+  padre('Barcelona'£splugum'.todo).

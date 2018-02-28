@@ -1,0 +1,54 @@
+- ¿Que temperatura <hizo, hubo> en <Iugar> el <dia fecha fecha>?
+- ¿Que temperatura <hizo, hubo> el <dia fecha, fecha> en <Iugar>?
+
+Ejemplos:
+
+- ¿Que temperatura hubo en el sur de Galicia el jueves 27/2/97?
+- ¿Que temperatura hizo el 28/2/97 en el Cantabrico?
+
+Las respuestas que nos proporcionará el sistema nos indicaran la
+temperatura (caso de haber alguna referencia en el texto), mostrandonos el
+cuantificador.
+
+3. Preguntas sobre fenomenos atmosféricos.
+
+- ¿Como estaba el cielo en <Iugar> el <dia fecha,fecha>?
+- ¿Como estaba el cielo el <dia fecha,fecha> en <Iugar>?
+
+Ejemplos:
+
+— ¿Como estaba el cielo en el sur de Galicia el jueves 27/2/97?
+- ¿Como estaba el cielo el 28/2/97 en el Cantabrico?
+
+Este tipo de preguntas genera las mismas respuestas que el primer tipo
+de preguntas, pero sin mostramos los fenómenos de temperaturas 0 vientos..
+
+4. Preguntas sobre cuantificadores de fenomeno en un lugar y una
+fecha.
+
+Sabiendo un fenómeno que ocurrió en un lugar y una fecha, podemos
+pedirle al sistema que nos informe de las características de ese fenómeno en
+concreto.
+
+- ¿Como <verbofenom> en <Iugar> el <dia fecha,fecha>?
+
+- ¿Como <verbofenom> el <dia fecha,fecha> en <Iugar>?
+
+- ¿Como era <articulo> <fenomeno> el <dia fecha,fecha> en <Iugar>?
+- ¿Como era <artioulo> <fenomeno> en<lugar> el <dia fecha,fecha>?
+- ¿Que <fenomeno> <hizo,hubo> en <Iugar> el <dia fecha,fecha>?
+
+- ¿Que <fenomeno> <hizo,hubo> el <dia fecha,fecha> en <Iugar>?
+
+NOTA: verbofenom es un verbo que denota un fenomeno en concreto. Por
+ejemplo llovió denota_ lluvia, nevó denota nieve.
+. ºu":
+Ejemplos: .—_ ,._..¡
+"'" $º'»… '.
+
+- ¿Como llovio!en Galicia el miercoles 26/2/97?
+
+- ¿Como era el viento en el litoral de Catalunya el 1/3/97?
+
+- ¿Que lluvia hizo el fl3)97en el norte de las Canarias?
+

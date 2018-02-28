@@ -1,0 +1,45 @@
+3) MANUAL DEL USUARIO
+Introducción
+
+Esta aplicación permite la interpretación de predicciones meteorológicas
+en lenguaje natural y la posterior consulta de éstas.
+
+Puesta en marcha
+
+Este programa necesita tener instalado el interprete de prolog "API".
+Una vez dentro del entorno cargaremos el fichero 'TIEMPO.ARI' y tras
+reconsultar el buffer iniciaremos el programa con la instrucción:
+?— main. " ,
+
+Seguidamente nos aparece una pantalla de presentación y el menu.
+Las opciones del menu son:
+
+0. Leer juego de pruebas —> Con esta opcion leemos las predicciones
+proporcionadas en nuestro juego de pruebas.
+
+1. Insertar textos —> Esta opcion nos permite insertar nuevas predicciones a
+traves del teclado.
+
+2. Realizar preguntas --> Mediante esta opcion, podemos realizar consultas en
+lenguaje natural sobre las predicciones introducidas previamente.
+
+3. Salir ——> Detiene la ejecución del programa.
+
+Insertar Predicciones.
+Este programa permite insertar dos tipo de predicciones:
+
+- Las predicciones introducidas por el usuario a traves del teclado
+usando la opción 1 del menu principal.
+- Las predicciones de ejemplo que adjuntamos con este programa
+usando la opcion 2 del menu principal.
+
+Las predicciones deberan estar escritas en lenguaje natural siguiendo el
+
+siguiente formato: :“)…
+
+'(” '.
+Dia dd/mmlaa (diagde_áa_semana) : lista de frases.
+rr '
+
+¡A :
+

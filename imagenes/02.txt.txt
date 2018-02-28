@@ -1,0 +1,10 @@
+1) ESPECIFICACIQN ACTQALIZA_D_A
+
+Para implementar la práctica hemos utilizado Prolog, ya que nos permite
+utilizar lógica clausal y gramáticas de cláusulas deñnidas, que nos facilitan el
+
+análisis del lenguaje natural.
+
+Respecto al nivel implementado hemos hecho el nivel alto, pennitendo
+realizarlas consultas en lenguaje natural.
+

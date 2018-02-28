@@ -1,0 +1,59 @@
+adj(?oco',poco,msc,sng,caliñ.
+adj(poco,pooo,msc,sng,calii).
+adj('Pocas',poca,fem,pl,calit).
+adj('Poca',poca,fem,sng,calif).
+adj(pocas,poca,fem,pl,calif).
+adj(poca,poca,fem,sng,calif).
+adj(Muy',mucho,msc,sng,caliñ.
+adj(muy,mucho,msc,sng,calif).
+adj('Muy',mucho,fem,sng,calif).
+adj(muy,mucho,fem,sng,calii).
+adj(Bastante',bastante,msc,sng,cahñ.
+adj(bastante,bastante,msc,sng,caliñ.
+adj('Bastante',bastante,fem,sng,calif).
+adj(bastante,bastante,fem,sng,calñ).
+
+> camb(ascenso,ascensp).
+camb(descenso,descensó).
+
+sust(cambios,cambios).
+sust(variaciones.mmbios).
+
+temp('Temperaturas').
+temp('Temperatura').
+temp(temperaturas).
+temp(temperatura).
+
+prep(en,plug)-
+prep(cabe,pindet).
+prep(a,a).
+prep(sín,sin).
+prep(con,con).
+prep(de.de).
+prep('En'.plug).
+prep('Cabe'.píndef).
+prep('A'.a).
+prep('5in'.sin).
+prep('Con',con).
+prep('De',de).
+
+arúcul(el,msc.sng).
+articul(la,fem.sng).
+articul(los,msc.pll
+articul(las,fem.pl ).
+articul('El',msc.sng).
+anicul('La',femsng).
+articul('Los'.msc.pl ).
+articul('Las'.fempl)…
+
+prob('Probabilidad ).
+prob('Posíbilidad' ).
+prob('probabilidad' ).
+prob('posibilídad).
+prob('Predominio').
+prob(predomim'o). ».
+
+conj(_v). n. * ººº”) ..
+conj(e).
+punt('.'). ¡ " * —- . en
+

@@ -1,0 +1,62 @@
+dospunt(':').
+
+verb(era,vnorm,ser,indef).
+verb(fue,vnorm, ser,indef).
+verb(hizo,vnorm,hacer,indef).
+verb(estaba,vnorm,estar,indef).
+verb(hubo,vnorm,haber,indef).
+verb(llovio,vfen,llcver,lluvia).
+verb(nevo,vfen,nevar,nieve).
+verb(granizo,vfen,granizar,gmnizo).
+verb(nublo,vfen,nublar,nubes).
+verb('flizo',vnorm,hacer,indeñ
+verb('Estaba',vnorm,estar,indef).
+verb('I-Iubo',vnorm,haber,indef).
+verb('Llovio',vfen,llover,lluvia).
+verb('Nevoº,vfen,nevarfnieve).
+verb('Granizo',vfen,granizar, granizo).
+
+parentes_ab('c).
+parentes_ce(')').
+interrab('¿').
+interrce('?').
+qH(que).
+QH('Que').
+com(como).
+com('Como').
+cuand('Cuando').
+cuand(cuando).
+dond(donde).
+dond('Donde').
+
+todofen(úempo).
+
+ex_obj_f(cielo.cielo.sng).
+ex_obj_f(cie_los…cielo.pl).
+
+%
+% GRAMATICA
+%
+
+predic(X) —> l_ped_diaría(X).
+prediºjp(X) —> l_pled_diaña(x).
+
+%ºo Preguntas tipo ¿Que … him en Barcelona el lunes lll/l?
+pregunm(cm…€…fmms) -—>
+interabrir.qm.cw_msubo(vmrm,hacer,_),expr_lugar(Ll).artiaúº(msc.sug).fecha(D).fecham&s(F
+CH),ímercemr.pmo.
+
+preg1mta(annL…€L,l,D,FCI-LPOS) —>
+interabrir,que.expr_tcmp.verbo(vnorm,hacer,_),arácnlo(mc.mg)fecha(D).fec…&hexpr_lugar(
+L,Z),interoerrar,mmo.
+
+pregtmm(wangwmpamc,L,z,D,FCI-LPOS) ->
+interabrir,que,expr_tenp,veúm(vnorm,haben_).expr_h….múmlo(msc_sng),fecha©),fechames&
+CH),intercerrar,mmto.
+
+pregunta(cuant,tempem…waI-LPO$) —>
+interabrir,que,expr_temp,verbo(vnorm,haber._).articulo(msc.sng),fecha(D),fechme&,expr_lugan(
+L,Z),intercerrar,punto. :“… ——u ._
+
+¿"a m..
+

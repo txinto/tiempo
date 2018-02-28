@@ -1,0 +1,57 @@
+%“ o Me preguntan por un lugar y una zona en conbfeto
+%% Busco si se dio en ese lugar ytoda la zona
+
+respuesta(fen,D,F€H,F,C,L,Z,POS) :—
+retract(tiempo(D,FC&FEN,ORIG,FENCUANT,L,todo,P0$lB)),
+
+respondefenom(femeC&fa15ofEN,deúo,FENCUANT,deM,L,falso,Z_falso.0RlG.cierto.PO
+SIB,cierto),
+respuesta(fen,D,F€&ñC,L,Z,POS), ""
+asmn(úemw(D,F€&FEN,0MG,FENCU ANT ,L,todo,P0$lB)).
+
+_ %º o Me preguntan por un lugar
+
+%ºobusco si se dio en toda la peninsula
+
+respuesta(fen,D,F€&F,€,L,todo,P0$) :-
+retract(tiempo(D,F€H,FEN,ORIG,FENCUANT,g&€M.ZONAPOSIB)),
+
+respondefenom(fen,D,FCILme,FEN,ckMo.FENCU ANT ,cierlo.L.falsolfalso,0RlG.cieno.P0
+SIB,cierto), resmesta(fen,D,F€&F.€,L.todof05).
+mmm(me_FCHF.CL10&POS).
+asscrt(tiempo(D_FCI—LFEN_ORIG_FENCUANT.gemMZONAPOSIB)).
+
+%º oºo Fin Fenomenos en general
+
+%“ oºo Cuanúñmdor en general. No me preguntan por los fenomem sino por
+%º o% como eran actos fenomenos
+
+%ºo Me preguntan por los fenomenos en general del pais
+
+%º o Busco todas los fenomenos en un dia
+
+respuesta(cuangD,FCI-LF,C,general,todo,P0$) :-
+re…(úemm(D,F€&F,0MG,FENCU ANT .LUGAR.ZONA,POSIB)).
+
+respondefenom(cuant,D,F CI—Lfalso,F,falso_I-'ENCU ANT .dm…LUGARderto,l0NA,cierto.0Rl
+G.cíerto,P08IB,cierto),
+respuesta(cuant,D,F€H,F,C.gemral.todo.P05),
+assert(tiempo(D,FCI—LF,ORIG_FENCUANT.LUGARZONA.POSIB)).
+
+%ºo Me preg1mtan por un lugar concreto. ankpier zona
+%ºoBuscosisedio eneselugaryentochslaszonas
+
+respuesta(cuanLD.F€l—LF.CLW…KB) :—
+…(…D_F…P.ORIG,FENCUANT.LZONA.POSIB)),
+
+respondefemm(aanfC&falso£ ,cierto,FENCU ANT .cima.LfalsolONAdeno.0Rl&cien
+0.P()SIB.deno).
+WMLD,FCH,F,C,LJ0&P05)…
+…(WD,FCHF,ORIG,FENCUANRLZONAPOSIB)).
+
+%ºo Me preguntan por un lugary una zona en concreto
+%% Busco si se dio en ese lugary esa zona
+
+respuesta(cuam,D,F€H,F,C,L,Z,POS) :-
+retract(tiempo(D,F€&ñORIG,FENCUANT,L,Z,POSIB)),
+

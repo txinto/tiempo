@@ -1,0 +1,65 @@
+preg1mta(cuangF,€,L,l,Df€f£P0$) -->
+interabrir,como,ve1bo(vfen,_,F),artículo(msc,sng),fecha(D),fechames(F€l—D,expr_lugar(L,l).intercenan
+punto. ' * '
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) -->
+interabrir,como,verbo(vfen,_,ñ,expr_lugar(L,l),articulo(msc,sng),fecham&s(F€H),intercemr,mnto.
+pregumta(cuant,F,C,L,Z,D,FCI—LPOS) -->
+interabrir,como,verbo(vfen,_,ñ,arúculo(msc,sug),fechames(F€ll),expr_lugar&l),intercenar,punto.
+
+%º o Preguntas tipo ¿Como era la lluvia del lunes 1/ l/ 1 en Barcelona ?
+pregunta(cuant,F,€,L,l,Df€&P0$) —>
+intembrir,como,verbo(vnorm,ser,_),articulo(G,N),fenoníeno(F,G,N),expr_lugm(L,l),arúculc(msc,sng),f
+echa(D),fechames(F€H),intercertar,punto.
+
+pregunta(cuant,F,€,L,l,Df€&P0$) -->
+interabrir,como,verbo(vnom1,ser,_),articulo(G,N),fenomeno(F,G,N),articulo(msc,sng),fecha(D),fechame
+_ S(FCH),expr_lugar(L,Z),intercerrarpmto.
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+interabrir,como,verbo(€norm,ser,_),arúculo(G,N),fenomeno(F,G,N),expr_lugar(Ll),artiaúo(msc,sng).f
+echames(F€H),imercerra¡-,puma
+
+preg1mta(cuant,F,€,L,l,D,F€l—LPOS) —>
+
+interabrir,como,verbo(vnorm, ser,_),articulo(6,N),fenomeno(F.G,N),articulo(msc. sng),fecham&s(F€H).e
+xpr_lugar(L,Z),intercerrar,punto.
+
+%% Preguntas tipo ¿Que lluvia hubo el lunes UU] en Barcelona ?
+pregunta(cuant.F.C.L.Z,D,FCH,POS) —>
+interabrir,que,fenomeno(F,_,_),verbo(vnorm,hacer,_),expr_lugar&l).arúaúo(mmsng)_fecha(D).fecha
+mes(FCH),intercerm.punto.
+pregunta(cuantF.€L.l.Df€&lº0$) -->
+interabrir,que,fenomeno(F._._).verbo(vnom1,hacer,_),articulo(msc,sng),fecha(D),fecham&s(F€ll).expr_l
+ugar(L,Z),intercenar,wnto.
+pregunta(cuant,F,€,L,l,Dj€l—LPOS) —>
+interabrir,que,fenomeno(F ,_._).vedx>(vnorm.hacer._).expr_lugar(L,l),arúculo(msc,sng),fechames& CH)
+,intcrcerrar,punto.
+pregunta(cuant,F,€,L,l,Df€&P0$) —>
+interabrir,que,fenomeno(F,_,_),verbo(vnorm,hacer,_).arúaúo(msc.sng).fechames(F€H),expr_lugar&l)
+.intercenar…punto.
+pregunú(manF.€,L,l,D,F€&lº05) —>
+interabrir.que.fenomeno(F,_,_),verbo(vnormhaber.J.expr_lugr(Ll),aniculo(msc,sng),fecha©).fecha
+mes(FCH),inleroenar.mnto.
+pregunta(cuant£€_L_l.Df€&P05) —->
+interabrir,que.fenomeno(F ,_,_),verbo(vnorm.haber._).arúaúo(msc,sng),fecha©),fechames(f* C H).expr_l
+ugar(L,Z),interoenanmnto.
+pregunta(cuanL£€.L,l.Df&?0$) —>
+interabrir,que.fenomeno(F ._._).verbo(morm.hd)er._),expr_lugar&,l),articulº(msc.sng).fec…C H)
+,ínteroerrar,pumo.
+pregunta(cuam£€.Ll,DfC&?0$) —>
+interabrir,que.fenomeno(F ._._).verbo(moumhaber,_),articulo(msc.sng).fecham&s&€ H).expr_lugar(L1)
+,intercerrar.pumo.
+
+¡
+%% Preguntas tipo ¿Cuando “mio en Barcelona?
+pregunta(axamW_€…fCl-LPOS) —>
+interabrir,axan&sutn(xfm_.VF),expr_lugar©,l),intemcmnpmm
+
+%% Preguntas tipo ¿Donde nevo el lunes 1/1/ ]?
+
+pregunta(don,VF,€,L¿Df€&P0$) ->
+interabrir,donde,verbo(vfen,_,VF),articulo(msc.sng).fecha(D).fecham(F€H),imercerm,mma
+pregunta(don,VF,€,L,l,D,F€l—LPOS) —>
+interabn'r,donde,verbo(vfen,_,VF),arúculo(msc.sng).fecham&s(F€íl),interoertarpmto.
+

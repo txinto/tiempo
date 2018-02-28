@@ -1,0 +1,65 @@
+%º o Opcion equivocada. volvemos al menu.
+ejecutar(0P€10Nl) :- pordefecto(0P€lONl).mainaux
+
+%% Funcion aux escribe una línea completa con retomo
+writeln(X) :- write(X),nl.
+
+%“ 0 Muestra por pantalla una presentacion y toma la opcion
+presentacion(0P€10Nl):-
+cls.
+deñne_window(ventana,",(4,4),(21,76),(30,27)),
+current_window(_,ventana),
+write(' Predicciones meteorológicas '),nl,
+write(' '),nl,
+write(' Este programa permite introducir textos meteorologicos en la '),nl.
+write(' base de datos climatológica y realizar preguntas referentes a '),nl.
+
+write(' estos datos. . '),nl,
+write(' ' '),Ill,
+
+write(' '),lll,
+
+write(' 0. Leer juego de pruebas '),nl.
+write(' 1. Insertar textos '),nl,
+
+write(' 2. Realizar preguntas ').nl.
+write(' 3. Salir ').nl.
+keyb(0PC10Nl,_),
+
+delete_window(ventana).
+
+% Si escogemos salir
+
+saMOPCION1) :— OPCION1=51, cls,
+deñne_window(vemana,",(4,4),(21,76),(30,27)),
+current_window(_,ventana), writeln('Gracias por utilizar nuestro programa'),keyb(X._).
+delete_window(ventana).
+
+% Si escogemos la segunda opcion
+
+segundaopcion(0P€lONl) :- OPCION1=SO,c15__
+deñne_wdndow(ventana,",(4,4),(21,60),(30,27)).
+current_window(_,ventana),delete_window(ventana).
+
+% Opcion no válida
+
+pordefecto(0P€10Nl) :- 0PCION1X=49. OPCION IX=S0.0PCIONIX=S l,cls,
+deñne_window(ventana,",(4.4).(21.76)_(30.27)).
+current_window(_,ventana). mite('0pción no válida.vuelva a
+
+intentarlo'),keyb(X,_),delete_vvindw“mm).
+
+%ºoEncasodequelaswsaswymmal
+restart :- cls.nñte('Progxm … Guante la ejecución'),keyb(K._)hmk
+
+%% Leemos el lado por tedah
+leertexto(L)z- write('… la prediccion -'),leer_ñade.0).
+
+%% Leemos el texto del fichero de predicciones
+
+leertext0jp(L)t- u..
+p_ºpelw.txt',r),
+write('Cargamos de fichero —').
+leer_frase… ; 9_ r n_
+.close(X).
+

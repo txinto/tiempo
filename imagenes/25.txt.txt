@@ -1,0 +1,71 @@
+TEXTO.ARI
+
+%0 o Obtiene una palabra
+obtiene _palabra(T):-
+write($Frase—-> $), read(T).
+
+% Dada una palabra, y el carácter que la sigue, leer el resto de la frase
+restofrase(Fichero,P,_,|])z-
+
+ultimapalabra(P), ! .
+restoñase(Fichem,P,€,[PllPs])z-
+
+leepalabra(Fichero,€,Pl ,C l),restofrase(Fichero,Pl ,C 1 ,Ps).
+
+% leer una sola palabra, dado un carácter inicial, recordando el carácter
+% que venía detrás de la palabra
+leepalabra(Fichero,€,P,€l)z-
+
+caracter_unico(€),!,name(P,[€]), et0(Fichero,€l).
+
+leepalabra(Fichero,€,P,€2):-
+en_palabra(€,Nuevo€),!,get0(Fichero.€1).
+restopalabra(Fichero,€1,Cs,C2),name(P. [NuevoCle] ).
+
+leepalabra(Fichero.€,P,€2)z—
+get0(Fichero.€ l).leepalabra(Fichero.€ 1.P.C2).
+
+restopalabra(F ichero.C . [NuevoCle].C2): -
+en _palabra(C.Nuevo€ ).!,getº(Fichero,€ 1 ).
+restopalabra(Fichero,€l,€s,€2).
+
+restopalabra(_.€.[l.€).
+% los siguientes caracteres forman palabra por si mismos
+
+camcter_unioo(44). /* , */
+
+wracter_unioo(59). /* ; */
+
+mmcter_unico(58). /* : */
+
+mmcter_unico(63). /* ? */ '
+caracter_unico(33). /* ! */
+
+mracter_unico(46). /* . */
+
+caracter_unioo(l3).
+
+% los siguientes mracteres pueden aparecer dentro de una palabra
+% la segunda cláusula de en _palabra comie11e mayúsculas a minúsculas
+
+en_palabra(€.€)z- C>96.C<123. /* a bz */
+en_palabra(C.L)z— C>64.C<91L is C+32. /* AB Z */
+en _palabra(€.€)z— C>47_C<58. /* l 2 9 */
+en_palabra(39.39). /* ' */
+
+en _palabra(45.45). /* - */
+
+v
+¿4% las siguientes paidan terminan una frase
+…
+
+ultimapalabra('.').
+
+ultimapalabra('!').
+
+ultimapalabra('?º).
+
+ultimapalabra(l3).
+
+leer1frase(Y,Ficbero)z- write('> ').
+

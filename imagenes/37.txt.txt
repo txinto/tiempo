@@ -1,0 +1,24 @@
+respondefenom(don,D,F€l—Lciertoj ,den0,FENCUANT ,cieno,LUGAR,cien010NAcieno.om
+G,cierto,P051B,cierto). " " '
+respuesta(donp,F€H,F,C,L,Z,POS).
+
+assert(úempo(D,F€&F,0RlG,me ANT ,LUGAR,ZONA,POSIB)).
+%0 0 Fin respuesta lugares
+
+%o o Si no se puede encontrar un fenomeno en un sitio, se busca en un sitio padre
+
+%%respuesta(fen,D,F€H,F,C,L,Z,POS) :-
+
+%ºo padre(L2,L,Z2),
+%% respuesta(fen,Df€flj,€,L2,22,POS).
+_ %%mspuesm(ng,FCEF,C,L,Z,POS) :-
+%ºo ' padre(L2,L,22).
+%% respuesta(cuant,D,F€H,£C.L2.ZZ.POS).
+%%respuesta(temp,Df€flf,C,L,Z,POS) :-
+%ºo padre(L2,L,22),
+%% respuesta(cuant.D.F€H£C.L2.ZZ.POS).
+
+%ºo Respuesta para cuando no queda información
+respuesta(l".D.FCl—LF.C.LZ-R)S) :- write('No queda mas informacion').keyb(l£_).
+%º o %% asi obligamos a back1racking
+

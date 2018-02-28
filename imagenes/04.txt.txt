@@ -1,0 +1,38 @@
+e
+
+orig(sur,sur,msc,sng).
+orig(este,este,msc,sng).
+
+De los cuantificadores necesitamos el significado, el género y el
+número.
+
+cuant(ocasional,ocasional,msc,sng).
+cuant(ocasional,ocasional,fem,sng). _.
+cuant( moderada, moderada,fem, sng).
+cuant(moderado,moderado,msc,sng).
+cuant(ocasionales,ocasional,msc,pl).
+cuant(ocasionales, ocasional,fem, pl).
+cuant(moderadas,moderada,fem,pl).
+cuant(moderados,moderado,msc,pl).
+
+Para los fenómenos guardamos significado, género y número. Tenemos
+en cuenta los sinónimos, de forma que nombres de fenómeno distintos
+(p.ej. precipitaciones y lluvia) tienen el mismo significado (lluvia).
+
+fenom('Viento',viento,msc,sng).
+fenom('viento',viento,msc,sng).
+fenom('Nubes',nubes,fem,pl).
+fenom(nubes,nubes,fem,pl)…
+fenom('Claros',claros,msc,pl).
+fenom(claros,claros,msc,pl)…
+fenom('Lluvia',lluvia,fem,sng).
+fenom('Lluvias',lluvia,fem,pl).
+fenom('Llovizna',lluvia,fem,sng).
+fenom('Lloviznas',lluvia,fem,pl).
+fenom(lluvia,lluvia,fem,sng).
+fenom(lluvias,lluvia,fem,pl).
+fenom(chubascos, lluvia,fem,pl).
+fenom(precipitaciones,Iluvia,fem,pl).
+fenom(soleado,sol,msc,sng).
+fenom(sol,sol,msc,sng).
+

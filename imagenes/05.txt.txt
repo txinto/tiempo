@@ -1,0 +1,41 @@
+Para los adjetivos, ademas de Significado y género y número también
+hemos guardado el tipo:
+- calificativo : notable, moderado,
+— lugar : Aquellos que hacen referencia a zonas concretas de un
+lugar (occidental, oriental, …) ,
+- lugarb : Adjetivización de un sustantivo de lugar (catalan,
+peninsular, …)
+
+adj(catalan,'Catalunya' , msc,sng, lugarb).
+adj(andaluz,'Andalucia',msc, sng, lugarb).
+adj(peninsular,'Peninsula',msc,sng,lugarb).
+
+adj(occidental,occidental,gind,sng,lugar).
+adj(oriental,oriental,gind,sng,lugar).
+adj(septentrional,septentrional,gind,sng, lugar)…
+adj(meridional,meridional,gind,sng,lugar).
+
+adj(ligera,ligera,fem,sng,calif).
+adj(ligeras,ligera,fem,pl,calif).
+adj(ligeros, ligero,msc,pl,calif).
+adj(ligero, ligero,msc,sng,calif).
+adj(moderada,moderada,fem,sng,calif).
+adj(moderadas,moderada,fem,pl,calif).
+adj(moderado,moderado,msc,sng,calif).
+adj(moderados,moderado,msc,pl,calif).
+
+De las preposiciones guardamos el tipo:
+
+prep(en,plug).
+prep(a,a).
+prep(sin,sin).
+prep(con,oon).
+prep(de,de).
+
+Para los artículos simplemente necesitamos género y número:
+
+articul(el,msc,sng).
+articul(la,fe"sng).
+articul(los,' , ).
+articul(las,féiff l)¡íf_¡
+

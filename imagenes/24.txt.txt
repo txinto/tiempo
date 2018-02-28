@@ -1,0 +1,61 @@
+lug('Peninsula','Peninsula',fem,sng).
+lug('Espanya',general,fem,sng).
+lug(España',geneml,femsng).
+
+zon(litoral,litoral,msc,sng).
+zon(norte,norte,msc,sng)…
+zon(sur,sur,msc,sng).
+zon(este,este,msc,sng).
+zon(oeste,oeste,msc,sng).
+zon(nordeste,nordeste,msc,sng).
+zon(sureste,sureste,msc,sng).
+zon(noroeste,noroeste,msc,sng).
+zon(suroeste,suroeste,msc,sng).
+zon(area,todo,msc,sng).
+zon(zona,todo,fem,sngj.
+zon(comunidades,todo,fem,pl).
+
+orig(norte,norte,msc,sng).
+orig(sur,sm,msc,sng).
+orig(este,este,msc,sng).
+orig(oeste.oeste,msc.sng).
+orig(nordeste_nordeste.msc.sng).
+orig(sur&ste.sureste…msc.sng).
+oúg(noroeste.nom.mscsng).
+orig(suroeste.….umc.sng).
+
+cuant(omsional.owsiomLmsc.sng).
+cuant(omsional.omsional.femsng).
+cuant(…nm.ahmdante,msc,sng).
+cuanl(ahmdante.abundante,fem,sng).
+cuant(nmdemda,modemda,fem,sng).
+cuant(modemdo,moderado,msc,sng).
+cuant(ñecuente,ñecuente,msc,sng).
+cuant(ñecuente,ñecuente,fem,sng).
+cuant(ñ1erte,ñ1erte,msc,sng).
+cuant(ñmrte,ñ1erte,fem, sng).
+cuant(debil,debíl,msc.sng).
+cuant(debil,debil.femsug).
+cuant(ocasionalas.omsioual.msc.pl ).
+cuant(ocasionalaomsioml.fcmph.
+cuant(abundant&s.ahmdaniaw.pl ).
+cuant(abundant&….&pll
+cuant(moderada&…femdl
+cuant(moderado&undaado.mc.pl).
+cuant(ñecuenta…mpl).
+cuant(frecueuta…pl).
+cuant(fuen&.flmanmu)_
+cuant(ñ¡erlm&ñnene.fmpl).
+cuant(debils.debiLm.pl).
+cuant(debiles.debil.fem.pl).
+
+M.
+
+! kv
+
+fenom('Viento',viento,msc,…;; = > ;.
+fenom(ñento',viento,msc,sng).
+
+fenom('Vientos',víento,msc,a£, .”…
+, .; =. ._..
+

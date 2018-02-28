@@ -1,0 +1,60 @@
+5) CODIGO FUENTE
+TIEMPO.ARI
+:- public maín/O,restart/O.
+
+%“ oºo Nada mas comenzar cargamos el fichero de predicados extra
+main :-
+
+consult('texto.ari'),
+
+consult('respuesari'),
+
+mainaux.
+
+%“ oºo Llamamos a la presentacion y ejecutamos la opcion que el usuario haya
+%º o% escogido
+mainaux :- presentacion(0P€lºNl_l),
+
+ejecutar(0P010Nl_l ).
+
+%º nº o Borra todas las ocurrencias de un aserto
+retractaH(X)z-retract(X),fail.
+retractall(X):-retract((X:-Y)),fail.
+
+retractall(_).
+
+%% leer juego de pruebas
+ejecutar(0P€lONl) :- OPCIONI=48.CIS.
+deñne_window(ventana.".(4.4),(21.76).(30_27)).
+cunent_windowbvemana),
+leertextojp(L),
+descontraer(L,LR),
+analizaúp(LR),nl,
+delete_window(ventam),
+mainaux.
+
+%º 0 Lee una prediocion por el teclado
+cjecutar(0?€lºNl) :- OPCION1=49,cIs,
+deñne_window(ventana,",(4,4),(21,76)_(30.27)).
+current_window(_,ventana),
+leenexto(L),
+descontraer(L,LR),
+analizar(LR),nl,
+delete_window(ventana).
+mainaux.
+
+%% Lee una pregunta por el leclarb
+ejecutar(0P€lONl) :- segundaopdon(0?€lºN l),
+deñne_window(venm'.(4.4).(2l,76),(30,27)),
+current_uindw(_.wulzna).
+leerpregunla(?k£0).
+demoanG.PREGR),
+analizarpreg(?k£GR),nl,
+delete_window(ventana),
+mainaux.
+¿£ ¿
+I h'
+
+%% Salimos del programa;—';» '- ': ¡ . ¡
+ejecutar(0P€lON 1) :- …OPCION1).
+

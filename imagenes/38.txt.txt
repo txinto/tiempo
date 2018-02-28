@@ -1,0 +1,58 @@
+read_line(Fichero,ll),anayade_pumo(ll,ZZ),list_text(l,Z2).
+convierte_a_lista(2,Y).
+
+leer_frasejp(Y,Fichero):- write('> '),
+read_shing(Fichero,5000,ll),
+anayade_puntojp(Zl,l2),
+list_text(le),
+convierte_a_lista(l,Y).
+
+convierte_a_lista(lin, [Pal 1Atom|X]) : -
+saltarblancos(2in,2inl), **
+separa_comas(Zinl ,Zin2),
+primera _palabra(Zin2,Pal ] ,Zout 1 ).
+name 1 Atom,Pal 1 ),
+resto_frase(Zoutl ,X).
+
+.r
+
+%Inserta un espacio delante de cada coma
+separa_comas([€arllin],Zmú)z- Car=47,
+separa_comas(lin,lin2).
+oonmtena([32,47_32]lin210ut).
+separa_comas([€arllin]lout)z- Car=44.
+separa_oomas(lin.lin2).
+oonmtena([32_44_32]lin2.lom).
+separa_comas([€arllin],loul)z- Car=46,
+_comas(Zin.lin2).
+oonmtena([32,46,32],lin2…lout).
+
+fº sepam_comas([€axllin],loú)z- Car=63,
+sepam_comas(lin,lín2),
+concatena([32,63,32],Zin2,20ut).
+sepam_ooms([€arilin],lout)z- Car=168,
+separa_comas(lin,lin2).
+concatena([168,32].Zin2.20ut).
+
+separa_comas([€artlinllout)z- ñnlinea(Car).
+sepam_oomas(lin.lin2).
+concatena([32].lin2.lml).
+
+separa_comas([€arl.l€arl)z- punto(Car). !.
+separa_comas([€arl.[€ar])z- intercermr(€ar).!.
+separa_comas([€arl.l€arl)z- ñnlinm(Car).!.
+sepam_comas(l€adlinl.[€adlaúl)z— Cañ=—H.
+sqnm_comas(Zin,lout).
+
+%Concatenacion de (bs listas
+concatena([].L.L).
+concatena([XlLl].L2.[XIL3]):-oonmtena(Ll,L2.L3).
+
+contraccio£1(del, [de,ell).
+conmion(al,[a,ell).
+
+“" …,Uí.'"
+descontraer([XlY],R) :- contraccion(XLX). dsoonuaer(Y,RR), concatena(LX,RkR).
+
+¡
+

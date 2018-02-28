@@ -1,0 +1,50 @@
+%% Preguntas tipo "Que lluvia hubo el_ lunes 11111 en Barcelona ?
+
+pregunta(cuant,F,0,L,Z,D,FCH,POS) --5
+interabrir,que,fenomeno(F,_,_),verbo(vnorm,hacer,_),expr_lugar(L,2),
+artículo(msc,sng),fecha(D),fechames(FCH),intercerrar,punto.
+
+pregunta(cuant,F,0,L,Z,D,FCH,POS) ——>
+interabrir,que,fenomeno(F,_,_),verbo(vnorm,hacer,_),articulo(msc,sng),
+fecha(D),fechames(FCH),expr_lugac(L,2), intercerrar,punto.
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) ——>
+interabrir,que,fenomeno(F,_,_),verbo(vnorm,hacer,_),expr_lugar(L,2),
+articulo(msc, sng),fechames(FOH), interoerrar, punto.
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+interabrir,que,fenomeno(F,_,_),verbo(vnom1,hacer,_),articulo(msc,sng),
+fechames(FCH),expr_lugar(L,2),intercerrar,punto.
+pregunta(cuant,F,0,L,Z,D,FCH,POS) —>
+interabrir, que,fenomeno(F,_,_),verbo(vnorm, haber,_),expr_lugar( L, 2),
+articulo( msc, sng),fecha( D),fechames( FCH), intercerrar, punto.
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+interabrir,que,fenomeno(F,_,_),verbo(vnorm,haber,_),articulo(msc,sng),
+fecha(D),fechames(FCH),expr_lugar(L,2),intercerrar, punto.
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) -->
+interabrir,que,fenomeno(F,_,_),verbo(vnorm,haber,_),expr_lugar(L,2),
+articulo(msc,sng),fechames(FCH), intercerrar,punto.
+
+pregunta(cuant,F,0,L,Z,D,FCH,POS) —>
+interabn'r, que,fenomeno(F,_,_),verbo(vnom1, haber,_),articulo(msc, sng),
+fechames(F CH),expr_lugar(L,2),intercerrar, punto.
+
+%% Preguntas tipo "Cuando Ilovio en Barcelona?
+pregunta(cuan,VF,0,L,Z,D…FCH,POS) —>
+interabn'r.cuando.verbo(vfen,_,VF),expr_lugar(L,2),intercerrar,punto.
+
+%% I?rggun_tas tipo "Donde nevo el lunes 1I1/1 ?
+
+pregunta(don,VF,0,L,LD,FCH,POS) —->
+interabrir,donde,verbo(vfen,_,VF),articulo(msc,sng),fecha(0)
+fechames(ñ£ti),intercerrar, punto.
+
+pregunta(don,VF,d&b,FCH,POS) —>
+interabrir,donde,g¿úqo(vfen,_,VF),artiwlo(msc,sng),fed1ames(FOH),
+intercerrar,pmta -9
+
+expr_obj_fenom(08%&; artículo(msc,N),expr_obj__fen(08J,N).
+. ¡ 3 ._y
+

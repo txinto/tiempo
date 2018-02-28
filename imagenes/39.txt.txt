@@ -1,0 +1,51 @@
+!
+
+descontraer([XlY],[XlR]) :- not(contraccion0(,_)), descontraer(Y,R).
+
+anayade_punto(ll ,Z.-2) string_ length(Zl ,,Long)
+ifthenelse(Long=0, concat(Zl, $Frase vacía $ ,,Z3) concat(Zl, $$ ,Z3))_
+stdng_length(l3, Long),&c(Long,L),
+nth_char(L,23,C),
+ifthenelse(€)==46,concat(l3,$.$,ZZ),wnwt(l3,$$,l2)).
+
+anayade_puntojp(ll ,:-Z2) string_ length(Zl, Long),
+ifthenelse(Long=0, ooncat(Zl, $Frase vacía. $ ,Z,3) concat(Zl, $$,Z3 )).
+string_ length(Z3, Long),
+dec(Long,L),
+nth_char(L,l3,€),
+iñhenelse((CX——
+concat(Z3,$.$,ZZ),concat(Z3,$$.22)).
+
+ 
+
+   
+
+,.-
+
+saltarblancos([€aracterllin],Zout):- Caracter=32, saltarblancos(szom).
+%%saltarblancos( [CaracterlZin] , [Caracte112in] ) : -Camcteñ=3 2 , ! .
+
+saltablancos([€aracterllinl.hut)z- Caracter=10. saltaxblanoos(szout).
+saltarblancos([€aractedlin]lout):- Caracter= 1 3. saltarblancos(Zin,lout).
+saltarblancos([€aractedlinl.[Caracterilin])z-Caracteñ=32.
+Camcleñ=lº.
+Camcteñ=l3.!.
+
+Prímera_mlabm([Car],l],[Car])l- Wntº(Car),!.
+primera _palabra( [Car|Zin],|],lin)z- espacio(Car), !.
+primera _palabm([€arllin],[CarlX],Zout)z- primera _palabra(lin,)£loú).
+
+resto_frase([€ar], [P]):—punto(€ar),name(P, [46]), !.
+
+resto_frase(lim [PalAtole])z- saltarblancos(linlinl ).
+primera _palabra(linl.?allout ] ).
+name(PalAtomlºal).
+resto_fxastom 1 .X).
+
+espacio(32).
+punto(46).
+ñnlinea( 10).
+ñnlinea( 13).
+intercerrar( 63).
+coma( 44).
+

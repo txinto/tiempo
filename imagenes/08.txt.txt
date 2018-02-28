@@ -1,0 +1,48 @@
+pregunta(fen,cielo,0,L,Z,D,FCH,POS) ;-…_> .
+interabrir,como,verbo(vnorm,estar,_),expr_obj_fenom(08J,N),
+expr_lugar(L,2), articulo(msc, sng),fecha(D),fechames( FCH), intercerrar,
+punto.
+
+pregunta(fen,cielo,C,L,Z,D,FCH,POS) -—>
+interabrir,como,verbo(vnorm,estar,_),expr_obj_fenom(08J, N),
+articulo(msc,sng),fecha(D),fechames(FOH),expr_lugar(L,2), intercerrar,
+punto.
+
+%% Preguntas tipo "Como Ilov¡o el ¡unes 11111 en Barcelona ?
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) -->
+interabrir,como,verbo(vfen,_,F),expr_lugar(L,2),articulo(msc,sng),
+fecha( D),fechames(FOH), intercerrar, punto.
+
+pregunta(cuant,F,C,L,2,D,FCH,POS) —>
+¡nterabrir,como,verbo(vfen,_,F),articulo(msc,sng),fecha(D),
+fechames(FCH),expr_lugar(L,2),intercerrar,punto.
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+interabrir, como,verbo(vfen,_, F ),expr_lugar(L,Z),articulo(msc, sng),
+fechames(FOH),intercerrar,punto.
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+interabrir,como,verbo(vfen,_,F),articulo(msc,sng),fechames(FCH),
+expr_lugar(L,2),intercerrar, punto.
+
+%% Preguntas tipo "Como era la lluvia del lunes 1/1 /1 en Barcelona ?
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+interabrir,como,verbo(vnorm,ser,_),articulo(G,N),fenomeno(F,G,N),
+expr_lugar(L,2),articulo(msc,sng),fecha(D),fechames(FOH),intercerrar,
+punto.
+
+pregunta(cuant,F,C,L,Z,D,FCH,POS) —>
+interabrir,como,verbo(vnonn,ser,_),articulo(G,N),fenomeno(F,G, N).
+articulo(msc,sng).fecha(D),fechames(FCH),expr_lugar(L,2), intercerrar,
+punto.
+
+pregun?a('cuam,r,c,L,zo,FCH,POS) —>
+interabrir,oomo,verbo(vnorm,ser,_),articulo(G, N),fenomeno(F,G, N),
+expr_lugar(L.2),articulo(msc,sng),fed13mes( FCH), intercerrar,punto.
+& vc
+pregunta(cuant,F, ,¡ ,FCH,POS) —>
+interabrir, vgmo(vnonn, ser,_),artiwlo(6,N),fenomeno(F, G, N),
+articulo(msc,sng),£echames(FCH),expr_lugar(L,2), intercerrar, punto.
+

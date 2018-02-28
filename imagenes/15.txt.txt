@@ -1,0 +1,53 @@
+Cada frase debe hacer referencia a un solo fenómeno (o a fenomenos
+compuestos como “nubes y claros” o “burmas' y nieblas”), que aparecerá al
+principio de la misma. A continuación del fenómeno hay la lista de
+cuantificadores y lugares en los que se dará este. Los cuantiticadores son
+adjetivos como ocasional, fuerte, Hay que mencionar que no permitimos
+más de un cuantificador para cada lugar o lista de lugares (por ejemplo “fuerte
+ocasional”). Finalmente, en la lista de lugares permitimos modificadores para
+especificar la zona concreta en que se da el fenómeno (en Andalucia
+occidental, en el norte de Aragon, en el litoral mediterraneo). Cabe destacar
+que hay que poner la preposicón 'en” antes de cada lugar, es decir, no
+admitimos construcciones como “en Catalunya, la Rioja y Aragón', sino “en
+Catalunya, en la Rioja y en Aragón'.
+
+Ejemplos de predicciones:
+
+Dia 3/8/97 (Domingo) : Posibilidad de precipitaciones debiles en
+Castilla, fuertes en el este de Galicia y ocasionales en Cantabria. Nubes y
+claros en Aragon. Soleado en Catalunya, en Andalucia y en las Canarias.
+Temperaturas sin cambios.
+
+Dia 10/12/97 (Martes) : Chubascos debiles a moderados en Andalucia
+occidental y fuertes en el norte de la Peninsula. Posibilidad de nieve en los
+Pirineos. Temperaturas en moderado descenso en el litoral cantabrico, en
+fuerte descenso en Madrid. Viento del noroeste en el sureste de Catalunya.
+
+Realizar preguntas.
+
+Una vez hemos introducido las predicciones, podemos realizar
+consultas en lenguaje natural al programa sobre estas. El sistema acepta
+varios tipos de pregunta:
+
+1. Preguntas sobre cualquier fenomeno en un lugar y una fecha.
+
+- ¿Que tiempo <hizo.hubo> en <lugar> el <dia fecha,fecha>?
+- ¿Que tiempo <hizo,hubo> el <dia fecha,fecha> en <lugar>?
+
+Ejemplos:
+
+— ¿Que tiempo hizo en el norte de las Canarias el miercoles 26/2/97?
+— ¿Que tienw¿pj_zo el 1/3/97 en el litoral de Catalunya?
+w .
+
+El sistema ;pmdera con una serie de datos para cada fenomeno
+encontrado en es… ys*en*ese lugar, estos datos incluiran el fenomeno, el
+cuantificador, si se prédijo posibilidad o certeza del fenómeno, y si es un viento
+nos dira además el orig;31
+
+.y ._
+
+2. Preguntas sobceja…atura en un lugar y una fecha.
+
+'……u¡
+

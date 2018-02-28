@@ -1,0 +1,47 @@
+De los verbos necesitamos el t¡¡5<3, el significado (infinitivo) y el tipo de
+fenomeno al que está asociado:
+
+verb(hizo,vnorm,hacer,indef).
+verb(estaba,vnorm,estar,indef).
+verb(hubo,vnorm,haber,indef).
+verb(llovio,vfen, llover, lluvia).
+verb(nevo,vfen,nevar,nieve).
+verb(granizo,vfen,granizar,granizo).
+
+- Una gramática de cláusulas definidas mediante la cual especificamos
+la estructura de las frases admitidas.
+
+Gramática para analizar las prequntas:
+
+%% Preguntas tipo "Que temperatura hizo en Barcelona el lunes 1/1/1?
+
+pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+interabrir,que,expr_temp,verbo(vnorm,hacer,_),expr_lugar(L,2),
+articulo(msc,sng),fecha(D),fechames(FOH),intercerrar, punto.
+
+pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) -->
+“ interabrir,que,expr_temp,verbo(vnorm,hacer,_),articulo(msc,sng),fecha(
+D) ,fechames(FOH),expr_lugar(L,2), intercerrar,punto.
+
+pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+interabrír,que,expr_temp,verbo(vnorm,haber,_),expr_lugar(L,2),
+articulo(msc,sng),fecha(D),fechames(FOH),intercerrar,punto.
+
+pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+interabrir,que,expr_temp,verbo(vnorm,haber,_),articulo(msc,sng),
+fecha(D),fechames(FCH),expr_lugar(L,2),intercerrar,punto.
+
+pregunta(cuant,temperatwa,0,L,Z,D,FCH,POS) —->
+interabrir,que,expr_temp,verbo(vnonn,hacer,_),expr_lugar(L,2).
+articulo(msc,sng),fechames(F CH), intercerrar,punto.
+
+pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+interabrir,qú',%xpr_temp,verbo(vnorm,hacer,_),artlwlo(msc,sng),
+fechames(%&r_lugar(L,2),interwrrar,punto.
+
+pregunta(cuant,te…áº¿,_2,D,FCH,POS) —>
+interabrir ,que, expr _temp, verbo(vnorm, haber ,_), expr_ lugar(L,2),
+
+articulo(msc, sng) fechames(FCH), interoerrar ,punto.
+…* 2" ¡I 13!
+

@@ -1,0 +1,53 @@
+2) DESCRIPCION QE_L SIS__TEMA
+
+Nuestro sistema permite extraer la información de textos escritos en
+lenguaje natural sobre predicciones meteórologicas y almacenarla en foma de
+predicados que posteriormente podremos consultar. Estas consultas también
+las podremos realizar mediante preguntas en lenguaje natural.
+
+Para representar el conocimiento nos hemos basado en un sistema
+formado por tres componentes:
+
+- Un lexicón que almacenará la infomación léxica y semántica de las
+palabras que admitimos en nuestro sistema. Esta información será la
+que nos permitirá satisfacer las restricciones de concordancia de género
+y número, utilizar las preposiciones correctas en cada parte de la frase o
+mantener información sobre sinónimos.
+
+A continuación mostramos algunos ejemplos de las entradas de nuestro
+lexicón
+
+De los dias de la semana solo nos interesa el nombre.
+
+fech('Lunes','Lunes').
+fech('Martes','Martes').
+fech('Miercoles','Miercoles').
+fech('Jueves','Jueves').
+
+Para los lugares guardamos el significado semántico (nombre), el
+género y el número.
+
+|ug('Canarias','Canarias',fem,pl).
+|ug('Asturias','Asturias',gind,sng).
+lug('Murcia','Murcia',gind,sng).
+lug('Malaga','Malaga',gind,sng).
+lug('Barcelona'.'Baroelona',gind,sng).
+lug('Pirineos','Piñneos',msc,pl).
+Iug('Estredm'…'Estredto',msc,sng).
+lug('Peninsula'.'Peninsula',fem,sng).
+
+Para las zonas y los orígenes de los vientos guardamos su signiñcado
+semántico,'ú ' ero el número.
+.nº??? . y
+
+zon(litoral,l¡o?£ljúsc,sng).
+zon(norte, norte,moc,sngh _
+zon(sur,sur,msc,sng).
+zon(este,este,msc,sng). ,
+
+' '
+
+orig(nórte,norte,msc.$£m; __ '…-
+
+04 A4
+

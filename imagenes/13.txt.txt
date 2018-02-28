@@ -1,0 +1,33 @@
+- Grado de certeza de la predicción.
+
+Esta información la guardamos en forma de un predicado con el formato
+siguiente:
+
+tiempo(dia, fecha, fenomeno, origen, cuantificador, lugar, zona, certeza).
+Un ejemplo de predicción es:
+
+Dia 5/6/96 (Miercoles) : Posibilidad de chubascos fuertes en el norte de
+Aragon. Viento del suroeste en el litoral andaluz.
+
+y los predicados resultantes serian:
+
+- tiempo(miercoles, 5/6/96, lluvia, fuerte, _, Aragon, norte, probable).
+- tiempo(miercoles, 5/6/96, viento, _, suroeste, Andalucia, litoral,
+cierto).
+
+Para cada pregunta abstraemos los datos que el usuario aporta y asociamos
+un tipo de pregunta que luego utilizaremos para mostrar la informacion
+necesaria. No guardamos en forma de asertos ninguna información sobre la
+pregunta.
+
+Los datos que el usuario aporta se tratan igual que en la gramatica de
+predicciones, ya que es la misma que trata cada uno de los componentes
+gramaticales de las preguntas.
+
+Asi, cada pregunta constituye una especie de formulario con unos campos
+rellenos (los datos que aporta el usuario), otros vacios, y un tipo de pregunta.
+
+El tipo discriminará la clase de respuesta que daremos y los datos serán
+utilizados para realizar búsquedas sobre los asertos tiempo() antes
+mencionados.
+

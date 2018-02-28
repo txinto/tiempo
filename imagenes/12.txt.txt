@@ -1,0 +1,75 @@
+dia -—> [W],ídi(W)).
+
+fecha(D) --> [W],(fech(W,D)).
+
+fechames(F ) -—> [|1],[integer(l1 ),int_text(l1 ,W1)),[W2],[barra(W2)),
+[I3],[integer(l3),int_text(l3,W3)),[I4],[barra(W4)),
+[I5],[integer(l5),int_text(l5,W5)].
+
+lugar(L,G,N) ——> [VV],£IUQ(W,L,G,N)].
+
+cuantif(C,G,N) --> [W],[cuant(W,0,G,N)).
+
+fenomeno(F,G,N) --> [W],[fenom(W,F,G,N».
+
+todofenom —-> [W],(todofen(W)).
+
+temperat ——> [W],ítemp(W)).
+
+Cºnjun --> [W].í00ni(w)i-
+
+adjet(A,G,N,T) —-> [W],[adj(W,A,G,N,T)].
+
+probab --> [W],(prpb(W)].
+
+sustant(8) —-> [W],[sust(W,8)).
+
+cambio(C) --> [W],£camb(W,C)).
+
+punto—->[W],(punt(W)).
+
+dospuntos-—>[W],fdospunt(W)).
+
+prepºS(T)—>[W],íprep(W,T)i.
+
+articulo(G,N)—>[W],far1icul(W,G,N)).
+
+zona(2,G,N)—>[W],izon(W,2,G,N)).
+
+origen(0,G,N) —> [W],(orig(W,0,G,N)).
+
+interabrir —> [W],(interrab(W)).
+
+intercerrar —> [W],[interrce(W)1.
+
+que —> [WMQU(W)1-
+
+cuando —> [W],(cuand(W)).
+
+donde —> [W],(dond(W)).
+
+como ——> [W],£com(W)).
+verb(hizo,vnorm,hacer,indef).
+
+verbo(T,l,F) ——> [W],(verb(W,T,l,F)).
+parentesisabrir —> [W],(parentes_ab(W)].
+parentesiscerrar —> [W],(parentes_oe(W)).
+
+expr_obj_fen(08J, N) —> [M,(ex_obj_f(W,08J,N)]
+
+- Un analizador que trabajará sobre la gramática para abstraer la
+estructura sintáctim que subyace a la frase.
+
+Para cada predicoón guardaremos los datos siguientes
+- Diamla semana en que se produjo el fenomeno.
+- Fe…“!el formato dia/mes/año.
+- Fe enb al que hace referencia la predicción.
+- En ¡:as&de que el fenómeno sea viento también guardaremos
+su direeaión.
+- Cuantiñcador sobre el fenómeno. (Débil, moderado, etc. )
+- Lugar ……jo el fénomeno.
+
+'- Zona concreta a la que afecto el fenómeno. (norte, litoral. …)
+
+ºº“I—!'OU'14.UGU
+

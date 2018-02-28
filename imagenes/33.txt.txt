@@ -1,0 +1,15 @@
+que --> [W],íqu(W))-
+
+cuando --> [W],ícuand(W)).
+
+donde --> [W],ídond(W))—.
+
+como --> [W],ícom(W)).
+verb(hizo,vnorm,hacer,indeñ.
+
+verbo(T,l,F) --> [W],íverb(W,T,l,F);.
+parentesisabrir —> [W],íparentes_ab(W)).
+parentesiscerrar --> [W],íparentes_ce(W)).
+
+expr_obj_fen(03],N) —> [W],íex_obj_f(W,0B],N))
+

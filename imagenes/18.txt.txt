@@ -1,0 +1,29 @@
+Salir.
+
+Para detener la ejecución de nuestro programa debemos escoger la
+opción 3 del menu principal.
+
+Cabe destacar que al salir del programa podemos seguir consultando
+las predicciones introducidas usando el predicado 'tiempo(D, FCH, FEN,
+ORIG, CUANT, LUG, ZON, POSIB )'. El significado de los parámetros de este
+predicado es el siguiente:
+
+- D : Dia de la semana en que se produjo el fenomeno.
+
+- FCH : Fecha en el formato dia/mes/año
+
+- FEN : El fenómeno al que hace referencia la predicción.
+
+- ORIG : Solo usado en caso de que el fenómeno sea 'viento'. Nos
+indica la dirección de éste. En cualquier otro fenómeno no esta instanciado.
+
+- CUANT—: Cuantiñcador sobre el fenómeno. (Débil, moderado, etc. )
+
+- LUG : Lugar en que se produjo el fénomeno.
+
+- ZON : Restringe la zona del lugar al que afecto el fenómeno
+referenciado porla predicción. (p.e.: NORTE de Galicia).
+
+- POSIB : Indica la posibilidad de que se de el fenomeno al que hace
+referencia la predicción.
+

@@ -1,0 +1,60 @@
+respondefenom(cuant,D,F€&falsoj,cieúo,FENCUANT,ciertoL,falso,l,falso,0Rl&cicrto.lº05
+[B,cierto). '
+respuesta(cuant,D,FCI-LF,C,L,Z,POS),
+
+assert(tiempo(D,FCH,F,ORIG,FENCUANT,L,Z,POSIB)).
+
+%% Me preguntan por un lugar y una zona en concreto
+%ºo Busco si se dio en ese lugar y toda la zona
+
+respuesta(cuant,D,F€l—LF,C,L,Z,POS) :-
+retract(tiempo(D,FCI—LF,ORIG,FENCUANT,LJ0&,POSIB)),
+
+respondefenom(cuant,Df€£l,falsof ,cierto,FEN€U ANT ,ciertoL,falso,l,falso,0RlG.cieúo.lº0$
+[B,cierto),
+regpuesta(cuant,Df€H£C,L,Z,POS).
+…(úemMD,FCHF,OMG,FENCU ANT ,L,todo,P0$lB)).
+
+%0 0 Me preguntan por un lugar
+%ºobusco si se dio en toda la peninsula
+
+respuesta(cuant,D,F€Hf…C.L.todo.P0$) :-
+retract(úempo(D_F CI—LF.ORIG.FENCUANT . generallONA.P05l8)).
+
+respondefenom(anD_mealso.F.cimo.l—'ENCU ANT .cierto.L.falsol.falso.0Rl&cíeno.P05
+[B.cierto).
+…(MLD.FCHF.C.L.MPOS).
+…(úe…D.FCHF.ORIG,FENCUANT , general,lºNA,P0$l8)).
+
+%º oº 0 Fin Cuanúñcadores en general
+
+%º 0 Respuesta dias
+
+%º 0 Nos estan preguntando cuando se dio un fenomeno en un sitio
+respuesta(cuan,D,F€H,F,€,L,todo,POS) :-
+retract(tiempo(DlAfE€H&F,ORIG,FENCUANT.LZONAPOSIB)).
+
+respondcfenom(cualeAFl5C%cieno-F.cieno.FI-INCU ANT .cieno,L,falso,20NA,deno.0m
+G.cierto,P0513cierto).
+WMD.FCPLF,C.LJO&,POS),
+
+assert(tiemple…C HAF.ORIG_I—ENCU ANT ,L,ZDNA,POSIB)).
+
+%% Nos estan preguntando amado se (ño un fenomeno enun sitio, en una zona
+respuesta(cmD-F€l-LF.C.LZ.POS) :- …(úempo(DlA,l—"ECHA,F,ORIG,FENCUANT.LZ.POSIB)).
+
+respondefenom(aanlAj-'ECHAcierto,F,cierto,F5N€U….cierto.L.falsol.falso.ORIG.ciert
+0,POSIB,cierto).
+respuesta(cuameG££€.LZ.ms).
+
+mMÚWDIAFECHAF,ORIG,FENCUANTL.LR)SIBD.
+%º 0 Fin respuma dias
+
+%º () Respusta lugares
+
+%% Nos estan preguntando donde se dio un fenomeno
+respuesta(domD,FC&F,€,£,l£0$) :-
+retract(tiempo(D,FCI—LF,ORIG,FENCUANTLUGARZONA,POSEB)),
+
+".
+

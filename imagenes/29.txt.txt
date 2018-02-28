@@ -1,0 +1,74 @@
+pregumta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+intcmbrir,que,expr_temp,verbo(vnorm,hacer,_),expr_lugar&,l),articulc(msc,sng),fechames(F€H).imerc
+errar,pumo. -
+pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) —>
+interabrir,que,expr_temp,verbo(vnorm,hacer,_),artículo(msc,sng),fechames(FCl—D,expr_lugar&,l),interc
+errar,punto.
+
+preg1mta(cuant,temperatum,C,L,Z,D,FCH,POS) -—>
+interabrir,que,expr_temp,verbo(vnorm,haber,_),expr_lugax(L,l),arúculº(msc,sug),fechames(F€H),inter
+cerrar,punto…
+
+preguma(cuant,temperatura,€,Ll,Df€&P0$) —>
+interabrir,que,expr_temp,vefoo(vnorm,haber,_),articulo(msc,sug),fechames(F€H),expr_lugaú,l).inter
+cerrar,punto.
+
+%% Preguntas tipo ¿Que tiempo hizo en Barcelona el lunes lll/1 ?
+
+_ pregunta(fen,F,C,L,Z,D,FCH,POS) —>
+interabrir,que,todofepom,verbo(vnomhacer,_),expr_lugar(L,l),articulo(msc,sng),fecha(D),fechamesdº
+CI—I),intercerrar,punto. '
+
+pregunta(fen,F,C,L,Z,D,FCH,POS) —>
+interabrir,que,todofenom,verbo(vnormhacer,_),articulo(msc.sug),fecha(D).fechames(F€H),expr_lugar&
+,Z),intercenar,punto.
+
+pregunta(fen,F,C,L,Z,D,FCI—LPOS) -->
+interabrir,que,todofenom,verbo(vnomhaben_).expr_lugar(L.l).articulo(msc.sng),fecha(D),fechames(l-'
+CH).intercenar,pumo.
+
+pregunta(fen.F.C.L.Z,D,FCH,POS) —>
+interabrir.que.todofenomverbo(vnorm,haber,_),arúculo(msc,sng),fecha(D).fechames(FCl—D.expr_lugar(
+L_Z).interoermr_wmo.
+
+pregunta(fen,F.€.Ll…D_F€flf05) -->
+interabrir,que,todofenomverbo(vnomhacer,_),expr_lugar(L,Z),articulo(msc,sng),fechames(F€H).imerc
+errar,punto.
+
+pregunta(fen,F,€,L,lpf…) —>
+interabrir,que,todofenom,vedx&xmmhacer,_),articulo(msc,sng),fechames(F€H),expr_lugar(L,l),interc
+errar,punto.
+
+pregunta(fen,F,C,Ll,DfCI-LPOS) —>
+interabrir,que,todofenom,verbo(vnomhaber._).expr_lugar(L,l),atticulo(msc,sng).fechames(FCl-I).inter
+cerrar,punto.
+
+pregunta(femF,€,L,l,D,F€l—LPOS) —>
+interabrir,que,todofenom,verbo(vnorm,haber._).articulo(msc,sng),fechamas(F€fl).expr_lugar&l).inter
+cerrar,punto.
+
+%% Preguntas tipo ¿Como estaba el cielo el lunes 1/1/ 1 en Barcelona ?
+pregunta(fen,cíclo.C.LZ,D,FCI—LPOS) —>
+interabrir,como.vetbo(vnorm,estar,_),expr_otj_fenom(0B5,N),expr_lugar(Ll),articulo(msc.sng).fecha
+mes(F CH),interoenar.p1mto.
+
+pregunta(fen,cielo.C.L.Z,D,FCH,POS) —>
+interainr,como.verbo(morm,estar,_),expr_otzi_fenom(03],N).arúaúo(msc,sng),fechames(F€….expr_l
+ugar&,Z)…interoemr.mnto.
+
+pregunta(femcielo.€.Llpf€&P0$) —>
+interabrir.como.xmbo(morm,estat,_),expr_obj_fenom(08lN).expr_lugar(Ll),arúculo(msc.sng).fecba(
+D).fecham&(F€….interoerrar,ptmta
+
+pregunta(femcielo-€-l.1ch&m& -->
+interabrinoomo.xerbo(morm,estar,_),expr_obj_fenom(08].…múaxlo(msc,sng),fecha(D).fechames(F C
+H),expr_lugar(Ll).imeroerrar,pumo.
+
+%% Preguntas tipo ¿Copo ll_ovio el lunes 1/1/ 1 en Barcelona ?
+
+pregunta(cuant,F,€,LlDf€f£P05) —>
+interabrir,como,verbo(vfe…_lugaúl)artículo(msc,sug),fecha(D),fechames(F€ll),interoemr.
+punto. .
+
+¿t…—, . _ .
+

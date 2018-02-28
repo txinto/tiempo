@@ -1,0 +1,41 @@
+El sistema respondera con una serie de datos para ese fenomeno
+encontrado en ese dia y en ese Iugar,_.estos datos incluiran el cuantiñcador, si
+se predijo posibilidad o certeza del fenómeno, y si es un viento nos dira
+además el origen.
+
+5. Preguntas sobre la fecha en que se produjo un fenomeno en un lugar
+concreto.
+
+— ¿Cuando <verbofenom> en <Iugar> ?
+Ejemplos:
+
+— ¿Cuando,llovio en el sur de Galicia?
+- ¿Cuando nevo en el Cantabrico?
+
+Las respuestas que nos proporcionará el sistema nos indicaran la fecha
+en que ocurrió el fenómeno, de qué foma actuó dicho fenómeno, si se predijo
+la posibilidad o la certeza de que se produjera el fenómeno, y en las zonas en
+las que se produjo (caso de no haberla especificado).
+
+6. Preguntas sobre el lugar en que se produjo un fenomeno un dia
+concreto.
+
+- ¿Donde <verbofenom> el <dia fecha, fecha> ?
+Ejemplos:
+
+- ¿Donde llovio el 26/2/97?
+- ¿Donde nevo el jueves 27/2/97?
+
+Las respuestas que nos proporcionará el sistema nos indicaran el lugar
+en que ocurrió el fenómeno, de qué forma actuó dicho fenómeno, si se predijo
+la posibilidad o la certeza de que se produjera el fenómeno, y en las zonas en
+las que se produjo.
+
+Respuesta a las preguntas: Una vez realizada una pregunta, el sistema
+intenta encontrar todas las posibles respuestas a dicha pregunta, enumerando
+todos los casos que la satisfacen. El sistema irá mostrando una a una y
+pidiendo al usuario que vaya pulsando tecla para mostrar el siguiente caso.
+Cuando se acabe el tratamiento de la pregunta, retomaremos al menú
+
+pr¡ncupal. …"
+

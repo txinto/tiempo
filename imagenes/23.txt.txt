@@ -1,0 +1,59 @@
+%º 0 Hemos fallado al intentar abrir el ñchero
+leertextojp(L)z- _ _
+writeln('ups! !! Parece que el ñchétó no esta!');keyb(l(,_).
+
+%0 o Leemos el texto de una pregumta
+leerpregunta(LP)z-
+write('Preg1mta —'),leer_ñase(LP,0).
+
+%0 o Analizamos la prediccion entrada por teclado '—
+analizar(LR) :- analisis(F,LR, [I),
+|
+
+analizar(LR) :- writeln('No entiendo la frase. Pulsa una tecla.'),keyb(K,_).
+
+. %% Para analizar la frase, hay que llamar a la gramatim de predicado
+analisis(P,X,l]) :- predié(P,X,l]).
+
+%% Analizamos las predicciones leídas de fichero
+analizarjp(LR) :- analisisqu,LR,|]l
+|
+
+analizarjp(LR) :- vm'teln('No entiendo la frase. Pulsa una tecla.'),keyb(K_).
+
+%ºoParaanalizarel lex1o_ hayque llamara la gramalimdepredimdo
+analisí5jp(P-X[l) 1- Prediij(P—XU).
+
+%“ o Analizamos las preguntas
+analizarpreg(APR) :- analisispreg(P,APk |]), !.
+
+%% Cuando falla el analisis de preguntas (hemos acabado), salvamos el
+%% contenido de tiemp02 en tiempo
+analizarpreg(APR):- volcar.
+
+%% Para analizar las preguntas, invocamos la gramatica de preguntas
+analisispreg(F,APR, [|):- pregunta(f,F,€,L,Z,D,F€HPO$. APR. [] ).…U.F,L,Z_D,FCILPOS).
+
+%º o Una vez resuelta la pregunta, la tratamos
+murpreg(T,F,L,Z,D,FCH,POS) :-
+respuesta(l',D,F€ll£€.Ll.lº05l.
+
+%º 0 Esto vuelca los predim&s tiemp02 … tiempo
+volcar :- retract(tiemp02(D.Fch.ORIG.C.LZ.P)),
+assert(tiemw(D_FG—LF.CRIGC.LLP)),
+
+volcar.
+volcar :- true.
+%
+% LEXICO
+%
+li.
+! ¡"
+
+fech('(Lunes)',1uncs'). …; ; “.
+
+fech('(h4aúes)',Maúes').
+
+fech('(h/liercoles)',Mercolesj).,—,…
+…! … ¡.
+

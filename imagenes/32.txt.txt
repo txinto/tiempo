@@ -1,0 +1,91 @@
+!
+
+eXpr_lugar(L,l) --> prep05(plug),artímlo(G,mlugar(hG,N),adjet(Z,_ulugar).
+
+eXpr_lugar(L,todo) --> prepº$(plug),articulo(6,N),lugarme. '
+
+expr_lugar(L,l) --> prepos(plug),arúculo(G,N),zºná(l,G,N),prepos(de),lugar(L,_,_).
+
+expr_lugm(L,Z) --> prepos(plug),arúculo(G,N),zona(l,G,N),prepos(de),lugar(L,_,_).
+
+expr_lugar(L,l) -—> prepos(plug),articulo(Gl,Nl),zona(Z,Gl,N1),
+prepos(de),articulo(G2,N2),lugar(L,_,_).
+
+expr_cuantif(€,G,N) -> cuantif(C1,G,N),prepos(a),cuanúf(€2,G,N),íconmt([C1,' a ',C2],C)).
+expr_cuantif(€,G,N) —> cuantif(C,G,N).
+
+expr_cuantiñ(€) --> prepos(sin),sustant(€l),íooncat(['siñ ',C1],C);.
+
+epr_ºuantiñ(c) -> prºp05(plug),adjet(A,G,N,calit),cambiº(C1),í00ncat([A,' ',C1],C);.
+
+expr_cuantift(€) --> prepos(plug),adjet(Al,G,N,calii),
+prepos(a),adjet(A2,G,N,calif),mmbie(€1),íoonmt([Al,' 3 ',A2,' ',Cl],C)).
+
+%0 o Fenomenos tipo bnfmas y nieblas, nubes y claros
+
+expr_fenomeno(F,nulo,normal,61,Nl,cierta) —>
+
+fenomeno(F 1,Gl,N1),conjun,fenomeno(F2,G2,N2),íconwt([Fl,' y ',F2],F)).
+
+expr_fenomeno(F,nulo,normal,G,N,cíerta) —> fenomeno(F.G.N).
+
+expr_fenomeno(F,nulo.normal.G.N,probable) ->
+
+probab.prepos(de).fenomeno(F 1 .G1.N ] ).conjunfenomeno(F2.62.N2),ícomt(lñ.' y ',F2],F) ;.
+
+expr_fenomeno(F,nulo,nomal.G.N.probable) —> probab.prepos(de),fenomeno(ñ6,N).
+
+expr_fenomeno(F,nulo,C,G,N,cierta) —> adjet(C_G.N.mlif).fenomeno(£&….
+
+expr_fenomeno(viento,0,C,G,N,cierta) —> femmno(viemo.6.N).pmpos(de).
+arúaúo(G,N)_odgen(ºl.G.….íoomt(l'del '.01].O);.
+
+expr_temp --> temperat.
+
+di('Dia').
+
+di(dia).
+
+barra('/').
+
+día -> [W].(di(W);.
+
+fechama(F) —> [I l ]. ( integer(ll),int_text(ll,W1);,[W2],ibarra(W2))—.
+[I3].(integer(l3),ínt_text(l3,W3)),[l4].íbana(W—t);.
+[15].íinteger(15),int_text(15,W5)).
+(…([Wl,W2,W3,W4.WS]_I—º)).
+
+lºgar(L,G,N) —> [WI-ilug(W.L,G,N)3.
+
+cuantif(C,G,N) —> [Wl.ícuant(W,€,G.N)).
+
+fenomeno(F,G.… —> [W]. ífenom(W.F.G.N) ; .
+
+todofenom —> [W].(lodofen(W)).
+
+temperat —> [Wl.(temp(W)).
+
+ººnjun --> [WI-ícºnj(w)).
+
+adjet(A,G,N.h -—> [W].(adj(W_A.G.N.T):.
+
+probab --> [Wl.iprde)3.
+
+sustant($) —> [W].ísmt(W.$);.
+
+cambio(C) —> [W].(camb(W.€)3.
+
+p1mto—->[W].ipum(W);_
+
+despuntºs—>[Wl.ímm(wn.
+
+puntazo—>[W].íwmm3.
+preposm—>[Wl,ípwp(wmk.
+articulo(G,N)—>[W].(articul(W,&N)j—.
+ZOM(Z,G,N)—>[W],ízon(wl,&N)?.
+origen(0,G,N) --> [W], (orig(W,0,G,N);.
+
+interabn'r --> [W],íinterrab(W)).
+
+intercerrar --> [W],íinterrce(W)¡.
+

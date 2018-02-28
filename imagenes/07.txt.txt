@@ -1,0 +1,50 @@
+pregunta(cuant,temperatura,C,L,Z,D,FCH,POS) -—>
+interabrir,que,expr_temp,verbo(ynorm,haber,_),articulo(msc,sng),
+fechames(FOH),expr_lugar(L,2),intercerrar,punto.
+
+%% Preguntas tipo "Que tiempo hizo en Barcelona el lunes 1/1/1 ?
+
+pregunta(fen,F,C,L,Z,D,FCH,POS) —->
+interabrir,que,todofenom,verbo(vnorm,hacer,_),expr_lugar(L,2),
+articulo(msc,sng),fecha(D),fechames(FCH),intercerrar,punto.
+
+pregunta(fen,F,0,L,2,D,FCH,POS) —->
+interabrir,que,todofenom,verbo(vnorm,hacer,_),articulo(msc,sng),fecha(
+
+D) ,fechames(FCH),expr_lugar(L,2),intercerrar, punto.
+
+. pregunta(fen,F,0,L,2,0,FCH,POS) -->
+
+interabrir;que,todofenom,verbo(vnorm,haber,_),expr_lugar(L,2),
+
+articulo(msc,sng),fecha(D),fechames(FCH), intercerrar, punto.
+
+pregunta(fen,F,C,L,2,D,FCH,POS) -->
+interabrir,que,todofenom,verbo(vnonn,haber,_),articulo(msc,sng),
+fecha( D),fechames(F CH),expr_lugar(L,2),intercerrar, punto.
+
+pregunta(fen,F,0,L,Z,D,FCH,POS) ——>
+interabrir,que,todofenom,verbo(vnonn,hacer,_),expr_lugar(L,2),
+articulo(msc,sng),fechames(FCH),intercerrar,punto.
+
+_ pregunta(fen,F,C,L,Z,D,FCH,POS)—>
+interabrir,que,todofenom,verbo(vnorm,hacer,_),articulo(msc,sng),
+fechames(FOH),expr_lugar(L,2),intercerrar,punto.
+
+pregunta(fen,F,0,L,2,D,FCH,POS) —>
+interabrir,que,todofenom,verbo(vnorm,haber,_),expr_lugar(L,2),
+articulo(msc,sng),fechames(FCH),intercerrar,punto.
+
+pregunta(fen,F,C,L,2,D,FCH,POS) —>
+interabrir,que,todofenom,verbo(vnorm,haber,_),adiculo(msc,sng),
+fechames( FCH),expr_lugar(L,2),intercerrar, punto.
+
+%% Preguntas tipo “Como estaba el cielo el lunes 1/1/1 en Barcelona ?
+pregunta(fen, cielo C L ZD, FCH ,POS) -->
+Iñtél'ábfil', como ,verbo(vnorm, estar ,,_) expr_ obj_fenom(08J, N)
+expr_lugar( L ,Z), artículo(msc, sng), fechames( FCH) intercerrar ,punto.
+
+pregunta(fen, cielobfl.,2, D, FCH, POS) —>
+interabrir ,cm8%rbo(vnom, estar ,,_) expr _obLfenom(08J N),
+articulo(msc,s )Jhphames(FOH), expr_ Iugar(L, Z), intercerrar p,unto
+

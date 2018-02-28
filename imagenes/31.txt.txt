@@ -1,0 +1,62 @@
+expr_obj_fenom(03],N) --> articulo(msc,N),expr_ '_fen(0B],N).
+
+l_pred_diaria([XlY]) --> pred_diaña0(),l_pred_díáña(Y).
+1 _pred_díaria(X) --> |].
+
+pred_diaria(D) --> expr_fecha(D,F€),dospumtos,l_&ases©£ C).
+expr_fecha(D,F€) —> dia,fechames(F€),fecha(D).
+
+fecha(D) --> [W],ífech(W,D)3.
+
+l_frases(D,F€) —> fmse(D,F€),l_ñases(Df€).
+l_frases(D,F€) -> I].
+
+%º () Fenomeno, lista de cuanliñwdom y lugares
+_ frase(D,FC) --> expr_fenomeno(F,0,€,G,N,POS),l_…M_IW,FC,F,O.G,N.POS),['.'].
+frase(D,FC) --> ["],l'-']—
+
+%º o Adj fenomeno lista lugares
+ñase(D,F€) —> expr_fenomeno(F,0,C,G,N,POS),I_6XpI_MgM(D,FC,F,O,C,POS).['.'].
+
+frase(D.FC) —> expr_temp,l_cuautif_lugart(D,F€),['.'].
+
+%º 0 Lista de cuantiñmdom y lugares
+% cuantif lugar y cuantif lugar
+l_cuantif_lugar(D_FCj-',O.G.N_POS) —> expr_cuantif(€1,G,N),l_expr_lugar(D.FC.F,0_C1.POS).
+conjm1,expr_cuantif(€2,G.N),l_expr_lugar(Df€£0.C2.POS).
+l_cuantif_lugar(Df€f,0,&N.?0$) —> expr_cuantif(€,G,N),l_expr_lugar(Df€.F,0.€.P0$).
+l_cuantif_lugar(l),F€f,0,&N.l'0$) ->
+expr_cuantif(€,G,N),l_expr_lugar(Df€f.0.C.POS),['.'],l_cuanúf_lugar(D,F€,F,0,G,N.P0$).
+
+l_cuantif_lugart(D,F€) —> expr_cuantiñ(€).(…D.FC,wmpemmra,0£,general,mdo,ciena);».
+l_cuantif_lugart(D,F€) -> expr_cuantiñ(€).l_expr_lugar(Df€.tempe…0,C,cierta).
+l_cuantif_lugart(Df€) -->
+expr_cuantiñ(€).l_expr_lugar(D,lº€,tempemm0£.eierta),[','],l_cuantif_lugart(D,FC).
+l_cuantif_lugarl(D.FC) —->
+
+expr_cuantiñ(€ l ).l_expr_lugar(D,F€,temperatum0£ 1 .cierta),conjun,expr_cuautiñ(€2).l_expr_lugar(
+D,FC,temperatum0.€2,cierta).
+
+%“ 0 Lista de lugam
+
+1_expr_lugar(D.F€-F.0.€.P0$) —> expr_lugar(Llll),mnjumexpr_lugar(úú).
+ítratar(D,F€,F,0,€,L1,Z1,POS)]»,íW.FC.F.O.C,LZ,ZZ,POS); .
+
+l_expr_lugar(DJ-'C.F.O.CPOS) —> expr_lugar&l),f,1,l_expr_luwafC .F ,O,C,POS),
+(mur(D,FC,F,O,C,L,Z,POS)L
+
+l_expr_lugax(D.F€.I-'.O.C.POS) --> expr_lugar(L,b,im….FC.F.O.C.LZ,POS)E.
+
+1_expr_lugar(D.FC .F.O.C POS) —> [|.
+
+th(D.FC.F.O.C.LZ.POS) :-
+( …(WD,FC,F,O,C,L,Z,POS)),
+…(…D_FC,F,O,C,L,Z,POS»,
+b¿ mite('.').
+
+em_lm> prepos(plug),lugar(L…J,adja(Z—_._Jugar). %% p-e- Andalucia ºccidental
+expr_lu , — lug),lugar(L._…_).
+
+expr_lugar(L,Z) —> prqsos(plug).artículo(0.….zonle.….
+adjet(L.G.N.lugarb). %% el norcksle peninsular
+

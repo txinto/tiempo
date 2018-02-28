@@ -1,0 +1,60 @@
+fech('(lueves)',']ueves').
+fech('(Viemes)','Viemes').
+fech('(Sabado)','$abado').
+fech('(Domingo)','Domingo').
+fech(lunes,'Lunes').
+fech(martes,Martes').
+fech(miercoles,'Micrcoles')…
+fech(iueves,'lueves').
+fech(viemes,'Viemes').
+fech(sabado,'$abado').
+fech(domingo,'Domingo').
+fech('Lunes','Lunes').
+fech(Martes',Martes').
+fech(Mercoles',Mcrcoles').
+fech(']ueves',']ueves').
+fech('Víemes','Viemcs').
+fech('Sabado','$abado')f
+fech('Domingo','Domingo').
+
+lug('0rense','0rense',gind,sing).
+lug('Corunya','€cmnya',fem sing).
+1ug('Comña'.,'€orunya'.femsing).
+lug('Lugo',1ugo'.gind.sing).
+lug('Pontevedra','Pontevedm'.gind.sing).
+
+lug(Barcelona',3moelom',gind_sng).
+lug('Tarxagonaº,ngona',gind,sng).
+lug(Leñda','l…erida',gind,sng).
+lug(11eida',1eñda',gind,sng).
+lug('Gerona','Gemua',gind,sng).
+lug('Girona','Gerona', ' d,sng).
+
+lug('Vila&mns','Viladecans',gind,sng).
+lug('A]ella'.'Alella', ' d,sng).
+lug('Esplugu&s','Esplugues',gind,sng).
+
+lug('Canarias','€anarias',fem,pl).
+lug('Asmúas','Ashnias',gind,sng).
+lug('Murcia','Murcia', ' d,sng).
+lug('Extremadura','Extremadum'.gindsng).
+lug(Malaga',Malaga',gindsng).
+lug(Madrid',Madñd',gindsng).
+lug('Sevilla','$evilla'.gindsng).
+lug('Galicia','Galicia',gind.sng).
+lug('Castilla'.'€astilla'.gind.mg).
+lug('[mn'.'1mn'.gind…sng).
+lug('Rioja'.'Rioja'-fcm.mg).
+lug(Nmm'.Nmam'.gind.mg).
+lug('Aragon'.'Amgm'.gind.mg).
+lug('Catalunya'.'€alalunyaí…sng).
+1ug('Cataluña','€atalunya',gind,sng).
+lug('Cantabrioo','€anlú'mo2msc,sng).
+lug('Andalucia','Andahjaúnd,sng).
+lug(Baleares','Baleares',gind,sng).
+lug(?iñneos',?iñneos',ms…—,“ . ,¡
+lug('Estrecho',£strecho',msc,sng).
+lug('Cantabria','€antabria',…
+
+-.... …: 1
+

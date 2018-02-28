@@ -1,0 +1,73 @@
+%% Lista de lugares
+
+I_expr_lugar(D,FC,F,O,C,POS) —->
+
+expr_lugar(L1 ,Z1),conjun,expr_lugar(L2,22).
+
+l_expr_lugar(D,FC,F,O,C,POS) —> expr_lugar(L,2),[','],
+l_expr_lugar(D,FC,F,O,C,POS).
+
+l_expr_lugar(D,FC,F,O,C,POS) —> expr_lugar(L,2).
+
+I_expr_lugar(D,FC,F,O,C,POS) -—> [].
+
+%% Expresion de lugar
+
+expr_lugar(L,2) --> prepos(plug), Iugar(L,_,_),adjet(2,_,_, lugar).
+
+expr_lugar(L,todo) --> prepos(plug),lugar(L,_,_).
+
+. expr_lugar(L,2) -—> prepos(plug),articulo(G,N),zona(2,G,N),
+
+adjet(L,G,N,lugarb).
+
+expr_lugar(L,2) --> prepos(plug),adiculo(G,N),lugar(L,G, N),adjet(2,_,_, lugar).
+
+expr_lugar(L,todo) —-> prepos(plug),articulo(G,N),lugar(L,G,N).
+
+expr_lugar(L,2) -—> prepos(plug),artlculo(6,N),
+zona(2,G,N),prepos(de),lugar(L,_,_).
+
+expr_lugar(L,2) —> prepos(plug),articulo(G,N),
+zona(2,G,N),prepos(de),Iugar(L,_,_).
+
+expr_lugar(L,2) —> prepos(plug),articulo(61,N1),zona(2,G1,N1),
+prepos(de),articulo(62,N2),lugar(L,_,_).
+
+%% Expresión de cuantiñcador
+, expr_cuantif(0,G,N) --> cuantif(C1,G,N),prepos(a),cuantif(02,G,N).
+expr_cuantif(0,G,N) --> cuantif(C,G,N).
+
+%% Expresion de cuantificador para temperaturas
+
+expr_cuantift(0) —> prepos(sin),sustant(01).
+
+expr_cuantift(0) —> prepos(plug),adjet(A,G,N,calif),cambio(01 ).
+
+expr_cuant'rft(0) —> prepos(plug),adjet(A1,G,N,cal'rf),
+prepos(a),adjet(A2,6,N,cal'rf),cambio(C1).
+
+%% Expresiones de fenómeno
+
+%% Fenomenos tipo brumas y nieblas, nubes y claros
+
+expr_fenomeno(F.nulo.normal,61,N1,cierta) —> fenomeno(F1,G1,N1),conjun,
+fenomeno(F2,G2,N2)
+
+expr_fenomeno(F.mlo.normal,6,N,cierta) —> fenomeno(F,G,N).
+
+expr_fenomeno(F,mlo,mnnal,G,N,probable) —> probab,prepos(de),
+
+_ . fenomeno(F1,G1,,N1)conj,fenomeno(F2,G2,N2).
+
+expr_ fenomeno(F, …, normal, G, N probable) —> probab prepos(de),
+fenomeno(F, G, N)
+
+expr_fenomeno(F, o, C ¡G, N ,cierta) —-> adjet(C, G, N w,lif), fenomeno(F, G, N).
+
+expr_fenomeno(vienté,0, C, G, N ,cierta) —> fenomeno(viento,G,N),prepos(de),
+artículo(G, N), on'gen(01, G, N).
+expr_ temp --_> temperél”
+
+=…» .¿ ,. ll.nn —————
+

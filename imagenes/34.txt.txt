@@ -1,0 +1,58 @@
+RESP.ARI
+
+%º () Mostramos por pantalla un resultado de la pregfmta —
+respondefenom(f,D,FCH,BFCH,F,BF,C,BC,L,BL,Z,BZ,O,BQP,BP) :-
+iñhen(BFCH———cieno,
+(writeln(' Dia': D),
+writeln(' Fecha': FCH)
+)),
+ifthen(BF==cierto,
+(
+writeln(' Fenomeno': F),
+iñhen(F==viento,
+(
+ifthen(30=cierto,writeln(' Origen': O))
+))
+) …
+), '
+ifthen(BC==cierto,writeln(' Cantidad': C)),
+iñhen(BL=cicrto,writeln(' Lugar': L)),
+iñhen(BZ==cierto,writeln(' Zona': Z)),
+iñhen(BP———cierto_writeln(' Posibilidad'z P)).
+wn'teln(' — Pulsa tecla para continuar ——').
+keyb(l£_).
+
+%º oºo Respuesta a los fenomenos en general
+%% Me preguntan por los fenomenos en general del pais
+%% Busco todas los fenomenos en un dia
+
+…?“ respuesta(fen,D,FCI—LF,C,generaLtodo,P()$) :-
+retract(tiempo(D,FCI—LFEN,ORIG,FENCUANT,LUGA&ZONAPOSIB)),
+
+responckfenom(fen,D,F€l—Lfalso,ñ&deno,FENCUANT.&eH0.LUGAR,den0,ZONA_cierlo.O
+RIG.C¡€HO.POSIB.CÍ€TÍO).
+mesta(fen,D,FCI-LF,C,general.todo.?0$).
+assert(úempo(D,FCPLFEN_ORIG_FENCUANT…LUGARZONA,POSIB)).
+
+%% Me preguntan por un lugar concreto. cualquier zona
+%ºoBuscosisedioenwelugmyentodaslaszoms
+
+respuesta(feme…£€.l.…tocb-lº05) :-
+mraa(tiempo(D_l—'CPLFEN.ORIG,FENCUANT,LZONA.POSIB)),
+
+respondcfemn(me.FCI-Lfalso.m.cierto,mw ANT .cieno.L.falso__lºNA,cierto.0RlG.cie
+rto,P0$lB.cieno).
+…….FCHRC_LJO&,POS).
+M(WD.FCHFEN,ORIG,FENCU ANT _LZONAPOSIB)).
+
+%ºoMepmgumanporunlngmyumzonaenconcreto
+%ºoBuscosisedioenmlugaryesazona
+
+respuesta(fen,Df€lí£€,Ll£08) :-
+rem(úempo(D,F€l—LFEN.ORIG.FENCUANT.L.Z.POSILB)).
+
+respondefenom(fen,D,F CH,falso_F£N c1enoFI-INCU ANT ,cieño,L,falso,l,falso,0Rl&cierto?0
+SIB.cierto),
+¡esp11esta(fen,D,FCH£C.Ll.…$).
+assert(tiempo(D,FCHFEN.ORIGFENCUANT,L,Z,POSIB)).
+

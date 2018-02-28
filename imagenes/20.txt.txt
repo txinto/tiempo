@@ -1,0 +1,38 @@
+4) JUEGOS DE PRUEBA
+
+El juego de pruebas que proporcionamos se encuentra en el fichero
+JPT.TXT. y su contenido es:
+
+Dia 26/02/97 (Miercoles) : Precipitaciones debiles a moderadas en
+Galicia, moderadas en el norte de Castilla y en las comunidades del
+Cantabrico y debiles en el norte de Navarra. Posibilidad de
+
+precipitaciones debiles en Baleares.? Poco nuboso en el sur de la
+Peninsula y en Canarias. Brumas y nieblas en Galicia y en Andalucia
+occidental. Temperaturas sin cambios.
+
+Dia 27/02/97 (Jueves) : Posibilidad de precipitaciones ocasionales en
+_Baleares . Nuboso en..Asturias, en Cantabria, en Catalunya y en el
+norte de Navarra. Nubes y claros en el area del Estrecho y en el
+litoral de Malagá. Predominio de chubascos en Murcia. Brumas y nieblas
+en Galicia y en Extremadura. Posibilidad de nieblas en el litoral de
+Andalucia. Temperaturas en moderado ascenso en Galicia y en las
+comunidades del Cantabrico y en moderado descenso en Baleares. Viento
+del este moderado a fuerte en el litoral mediterraneo. Viento del
+norte fuerte en el nordeste peninsular y en el norte de Baleares.
+
+Dia 28/02/97 (Viernes) : Posibilidad de nubes en el sur de Andalucia y
+en el litoral de Murcia. Poco nuboso en Catalunya. Precipitaciones
+abundantes en el litoral del Cantabrico. Temperaturas en uwderado a
+notable ascenso en, Navarra, en la Rioja y en .Aragon y en moderado
+ascenso en Galicia. Temperaturas en ligero ascenso en Asturias. Viento
+del este fuerte en el area del Estrecho y moderado en el litoral
+andaluz. Viento del nordeste moderado en el norte de Baleares.
+
+Dia 1/03/97 (Sabado) : Nubes y claros en la zona del Estrecho. Poco
+nuboso en el norte peninsular. Brumas y nieblas en Asturias. Chubascos
+en Galicia. Temperaturas sin cambios en la Península y en ligero
+descenso en las Canarias. Viento del este debil en el area del
+Estrecho y en el norte de Canarias y moderado en el litoral catalan.
+Nevadas moderadas en los Pirineos.
+

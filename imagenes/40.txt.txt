@@ -1,0 +1,59 @@
+EXTRA.ARI
+
+%“ () Atencion, estos predicados sirven para crear uh'arbol de lugares
+
+%º o del siguiente tipo
+
+%% Península
+
+%% Catalunya Galicia
+
+%“ o Barcelona Tarragona Orense Lugo
+%“ o Viladecans Esplugues
+
+%º o
+
+%ºo Tambien se especiñca la zona en la que se encuentra
+%º o Se ha implementado, funcionaba correctamente, pero se colgaba muy
+%% a menudo.
+
+%“ ()
+%ºo Ejemplo: ¿Que viento hubo en Viladecans el 1/3/97?
+
+_ %º o Respondia correctamente el viento que afectaba al litoral
+%% de Catalunya.
+
+padre('Galicia','0rense',sur).
+padre('Galiciaº,'0rense',este).
+padre('Gahcia','0rense'.todo).
+padre('Galicía',lugo',norte).
+padre('Galicia',1ugo',este).
+padre('Galicia',lugo',todo).
+padre(ºGalicia',?ontevedra',au).
+padre('Galicia'.?ontevedra',o&e).
+padre('Gahcia',?ontevedra',todo).
+padre('Galícía','€omnya',oeste).
+padre('Gahcia','€omnya',nortc).
+padre('Galicia','€orunya',todo).
+
+mdre('Cataluma',"l"arragona',sur).
+padre('Calalunya'.Tarragona',oeste).
+padre('Catalun_va'.Tarragona',litoral).
+padre('Cataluny-a2ngona',todo).
+padre('Catalunya'…'6erona',norte).
+padre('Cataluma'.'6erona',este).
+padre('Catalun_va'-'6erona',litoral).
+padre('Catalunya'.'0emna'.todo).
+padre('Catalunya'.'8aroelona',norte).
+padre('Catalunya'38arcelona',este).
+padre('Catalun_xa'.'Baroelona',litoral).
+padre('Cataluma'fBaroelonaktodo).
+padre('Cataluma'.'lxñdaínorte).
+padre('Catalunyaí'lxridalo&el
+padre('Cataluma'.1eñch'.todo)…
+
+padre('Barcelona'fVi…ílitoml).
+padre('Baroelom'.'“…m'.to&).
+padre('Barcelona'l/dela'.to&)).
+padre('Barcelona'£splugum'.todo).
+

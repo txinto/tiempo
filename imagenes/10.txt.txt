@@ -1,0 +1,49 @@
+Gramática para analizar las predicciones
+predic(X) --> I_pred_diaria(X).
+
+I_pred_diaria([XlY]) ——> pred_diaria(X),I_pred_diaria(Y).
+I_pred_diaria(X) --> [].
+
+pred_diaria( D) --> expr_fecha(D, FC),dospuntos, I_frases( D, FC).
+expr_fecha(D,FC) —> dia,fechames(F0),fecha(D).
+
+l_frases(D,F0) --> frase(D, FC), I_frases(D,F0).
+i_frases(D,F0) ——> [].
+
+frase(D,FC)—>expr_fenomeno(F,O,C,G,N,POS),
+I_cuantif_lugar(D,FC,F,O,G,N,POS),['.'].
+
+frase(D,FC) —> expr_fenomeno(F,0,0,6,N,POS),
+I_expr_lugar(D,FC,F,O,C,POS),['.'].
+
+frase(D,FC) —> expr_temp,I_cuantif_lugart(D,FC),['…'].
+
+%% Lista de cuantiñcadores y lugares
+
+I_cuantif_lugar(0,FC,F,O,G,N,POS) —> expr_cuantif(01,6,N),
+I_expr_lugar(D,F0,F,0,C1,POS),
+conjun,expr_cuantif(C2,G,N),I_expr_lugar(D,FC,F,O,CZ,POS).
+
+|_cuantif_lugar(0,F0,F,O,G,N,POS) --> expr_cuantif(0,6,N),
+I_expr_lugar(0,F0,F,0,0,POS).
+I_cuantif_lugar(0,FC,F,O,G,N,POS) -—> expr_cuantif(0,6,N),
+I_expr_lugar(D,FC,F,O,C,POS),
+[','],I_wantif_lugar(0,F0,F,O,G,N,POS).
+
+%% lista de cuantiñcadores y lugares para frases referentes a temperaturas
+
+I_cuantif_lugart(0f0) —> expr_cuantift(€).
+
+l_cuantif_lugar1( D,FC) —> expr_wantift(0),
+i_expr_lugar(D,FC,temperatura,O,C,cierta).
+
+i_cqaptif_lugart(0.i—'C) —> expr_cuantift(0),
+|_expr_lugar(D,FC,temperatura,O,C,cierta)…
+
+iva“. [', '],_I cuantif |__ugart(D,F0).
+¡ _cuantif_,lugad(0 FC) —> expr _cuantift(01),
+¡ u — º . | _e__xpr lugar(D, FC ,_temperatura O, 01 cierta),
+
+conjun, expr_cuantift(02)
+"* …)A I_expr_lugar(D,FC,temperah1ra,0,02,cierta).
+
